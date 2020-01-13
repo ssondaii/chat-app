@@ -8,7 +8,7 @@
 @endif
 <div class="card">
     <div class="card-header">
-        {{ trans('oauthClient.title_singular') }} {{ trans('global.list') }}
+        {{ trans('user.title_singular') }}
     </div>
 
     <div class="card-body">
@@ -17,55 +17,59 @@
                 data-toggle="modal"
                 data-target="#modalCreateNewOAuthClient"
                 style="margin-bottom: 10px;">
-            {{ trans('oauthClient.button.create') }}
+            {{ trans('user.button.btn-create') }} {{ trans('user.title') }}
         </button>
-        <div class="table-responsive">
+        <div class="table-responsive" style="padding: 20px">
             <table class=" table table-bordered table-hover datatable datatable-Client">
                 <thead>
                     <tr class="row">
-                        <th class="col-1">{{ trans('oauthClient.fields.id') }}</th>
-                        <th class="col-2">{{ trans('oauthClient.fields.name') }}</th>
-                        <th class="col-3">{{ trans('oauthClient.fields.secret') }}</th>
-                        <th class="col-4">{{ trans('oauthClient.fields.url') }}</th>
-                        <th class="col-2" colspan="2">{{ trans('oauthClient.fields.action') }}</th>
+                        <th class="col-1">{{ trans('user.fields.id') }}</th>
+                        <th class="col-2">{{ trans('user.fields.name') }}</th>
+                        <th class="col-3">{{ trans('user.fields.email') }}</th>
+                        <th class="col-2">{{ trans('user.fields.created_at') }}</th>
+                        <th class="col-2">{{ trans('user.fields.updated_at') }}</th>
+                        <th class="col-2" colspan="2">{{ trans('user.fields.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($clients as $key => $client)
-                        <tr class="row" data-entry-id="{{ $client->id }}">
-                            <td class="col-1">{{ $client->id ?? '' }}</td>
-                            <td class="col-2">{{ $client->name ?? '' }}</td>
-                            <td class="col-3">{{ $client->secret ?? '' }}</td>
-                            <td class="col-4">{{ $client->redirect ?? '' }}</td>
+                @if(isset($users) && count($users)>0)
+                    @foreach($users as $key => $user)
+                        <tr class="row" data-entry-id="{{ $user->id }}">
+                            <td class="col-1">{{ ($key + 1) ?? '' }}</td>
+                            <td class="col-2">{{ $user->name ?? '' }}</td>
+                            <td class="col-3">{{ $user->email ?? '' }}</td>
+                            <td class="col-2">{{ $user->created_at ?? '' }}</td>
+                            <td class="col-2">{{ $user->updated_at ?? '' }}</td>
                             <td class="col-1">
                                 <button id="edit-[{{ $key }}]"
-                                        class="btn btn-xs btn-info"
-                                        data-id="{{ $client->id }}"
-                                        data-name="{{ $client->name }}"
-                                        data-url="{{ $client->redirect }}"
+                                        class="btn btn-sm btn-info"
+                                        data-id="{{ $user->id }}"
+                                        data-name="{{ $user->name }}"
+                                        data-url="{{ $user->email }}"
                                         data-toggle="modal"
                                         data-target="#modalEditOAuthClient"
-                                >{{ trans('global.edit') }}</button>
+                                >{{ trans('user.button.btn-edit') }}</button>
                             </td>
                             <td class="col-1">
                                 <button id="delete-[{{ $key }}]"
-                                        class="btn btn-xs btn-danger"
-                                        data-id="{{ $client->id }}"
-                                        data-name="{{ $client->name }}"
-                                        data-url="{{ $client->redirect }}"
+                                        class="btn btn-sm btn-danger"
+                                        data-id="{{ $user->id }}"
+                                        data-name="{{ $user->name }}"
+                                        data-url="{{ $user->email }}"
                                         data-toggle="modal"
                                         data-target="#modalConfirmDelete"
-                                >{{ trans('global.delete') }}</button>
+                                >{{ trans('user.button.btn-delete') }}</button>
                             </td>
                         </tr>
                     @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
     </div>
-    @if(isset($clients) && count($clients) > 0 && $clients instanceof \Illuminate\Pagination\LengthAwarePaginator )
+    @if(isset($users) && count($users) > 0 && $users instanceof \Illuminate\Pagination\LengthAwarePaginator )
         <div class="pagination-sm">
-            {{ $clients->links() }}
+            {{ $users->links() }}
         </div>
     @endif
 </div>

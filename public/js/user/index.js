@@ -1,56 +1,68 @@
 $(document).ready(function() {
+    let form_create = $('#createOAuthClientForm');
+    let form_edit = $('#editOAuthClientForm');
+    let form_delete = $('#deleteOAuthClientForm');
+    let modal_create = $('#modalCreateNewOAuthClient');
+    let modal_edit = $('#modalEditOAuthClient');
+    let modal_delete = $('#modalConfirmDelete');
+    let modal_error = $('#modalError');
+    let modal_success = $('#modalSuccess');
+    let modal_fail = $('#modalFail');
+    let btn_save_create = $('#create-oauth-client-btn');
+    let btn_save_edit = $('#edit-oauth-client-btn');
+    let status = $('#status_flg');
+
     //validate and submit form create new oauth-client
-    $('#create-oauth-client-btn').on('click', function () {
+    btn_save_create.on('click', function () {
         let oauthClientValidation = new validation();
         oauthClientValidation.validateCreate();
 
-        if($('#createOAuthClientForm').valid()){
-            $('#createOAuthClientForm').submit();
+        if(form_create.valid()){
+            form_create.submit();
         }
     });
 
     //validate and submit form edit oauth-client
-    $('#edit-oauth-client-btn').on('click', function () {
+    btn_save_edit.on('click', function () {
         let oauthClientValidation = new validation();
         oauthClientValidation.validateEdit();
 
-        if($('#editOAuthClientForm').valid()){
-            $('#editOAuthClientForm').submit();
+        if(form_edit.valid()){
+            form_edit.submit();
         }
     });
 
     // show modal error
-    if($('#modalError').length){
-        $("#modalError").modal("show");
+    if(modal_error.length){
+        modal_error.modal("show");
     }
 
     // show modal message result
-    if($('#status_flg').length){
-        if($('#status_flg').val() === '1'){
-            $('#modalSuccess').modal("show");
+    if(status.length){
+        if(status.val() === '1'){
+            modal_success.modal("show");
         }
-        else if($('#status_flg').val() === '-1'){
-            $('#modalFail').modal("show");
+        else if(status.val() === '-1'){
+            modal_fail.modal("show");
         }
     }
 
     //show edit oauth-client form
-    $('#modalEditOAuthClient').on('show.bs.modal', function(e) {
+    modal_edit.on('show.bs.modal', function(e) {
         let button = $(e.relatedTarget);
-        let editForm = $('#editOAuthClientForm');
-        editForm.find('input[name="clientIdEdit"]').val(button.attr('data-id'));
-        editForm.find('input[name="clientNameEdit"]').val(button.attr('data-name'));
-        editForm.find('input[name="clientUrlEdit"]').val(button.attr('data-url'));
+
+        form_edit.find('input[name="clientIdEdit"]').val(button.attr('data-id'));
+        form_edit.find('input[name="clientNameEdit"]').val(button.attr('data-name'));
+        form_edit.find('input[name="clientUrlEdit"]').val(button.attr('data-url'));
 
         clearEditForm();
     });
 
     //show modal confirm before delete client
-    $('#modalConfirmDelete').on('show.bs.modal', function(e) {
+    modal_delete.on('show.bs.modal', function(e) {
         let button = $(e.relatedTarget);
-        let deleteModal = $('#deleteOAuthClientForm');
 
-        deleteModal.find('input[name="clientIdDelete"]').val(button.data('id'));
+        form_delete.find('input[name="clientIdDelete"]').val(button.data('id'));
 
         $('.debug-information').html(
             '<p>Client ID: <strong>' + button.data('id') + '</strong></p>' +
@@ -60,25 +72,21 @@ $(document).ready(function() {
     });
 
     //when modal create show up
-    $('#modalCreateNewOAuthClient').on('show.bs.modal', function(e) {
+    modal_create.on('show.bs.modal', function(e) {
         clearCreateForm();
     });
 
     //remove class help-block of <input> and remove <span class='help-block'>
     function clearEditForm(){
-        let createForm = $('#editOAuthClientForm');
-
-        createForm.find('input').removeClass("help-block");
-        createForm.find('span.help-block').remove();
+        form_edit.find('input').removeClass("help-block");
+        form_edit.find('span.help-block').remove();
     }
 
     //remove class help-block of <input> and remove <span class='help-block'>
     function clearCreateForm() {
-        let createForm = $('#createOAuthClientForm');
-        createForm.find('input[name="clientName"]').val('');
-        createForm.find('input[name="clientUrl"]').val('');
-
-        createForm.find('input').removeClass("help-block");
-        createForm.find('span.help-block').remove();
+        form_create.find('input[name="clientName"]').val('');
+        form_create.find('input[name="clientUrl"]').val('');
+        form_create.find('input').removeClass("help-block");
+        form_create.find('span.help-block').remove();
     }
 });
