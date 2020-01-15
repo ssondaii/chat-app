@@ -17,7 +17,7 @@
                             <i class="fas fa-fw fa-tachometer-alt">
 
                             </i>
-                            <span>{{ trans('global.management.dashboard') }}</span>
+                            <span>{{ trans('global.management.manage_dashboard') }}</span>
                         </p>
                     </a>
                 </li>
@@ -27,7 +27,7 @@
 
                         </i>
                         <p>
-                            <span>{{ trans('global.management.client') }}</span>
+                            <span>{{ trans('global.management.manage_client') }}</span>
                         </p>
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                             <i class="fas fa-fw fa-sign-out-alt">
 
                             </i>
-                            <span>{{ trans('global.logout') }}</span>
+                            <span>{{ trans('global.button.btn_logout') }}</span>
                         </p>
                     </a>
                 </li>

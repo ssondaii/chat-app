@@ -1,22 +1,25 @@
 <?php
 return [
-    'logout'        => 'Log Out',
-    'footer'        => 'trson.dai@gmail.com',
+    'page'          => [
+        'title'     => 'Chat-app',
+        'footer'    => 'trson.dai@gmail.com',
+    ],
     'management'    => [
-        'dashboard'         => 'Dashboard',
-        'client'            => 'Management Client',
+        'manage_dashboard'         => 'Dashboard',
+        'manage_client'            => 'Management Client',
     ],
     'button'        => [
-        'btn-close'         => 'Close',
-        'btn-create'        => 'Create',
-        'btn-confirm'       => 'Confirm',
-        'btn-cancel'        => 'Cancel',
-        'btn-save'          => 'Save',
-        'btn-edit'          => 'Edit',
-        'btn-delete'        => 'Delete',
+        'btn_close'         => 'Close',
+        'btn_create'        => 'Create',
+        'btn_confirm'       => 'Confirm',
+        'btn_cancel'        => 'Cancel',
+        'btn_save'          => 'Save',
+        'btn_edit'          => 'Edit',
+        'btn_delete'        => 'Delete',
+        'btn_logout'        => 'Log out',
     ],
     'message'        => [
-        'success'           => 'Action performed successfully.',
-        'fail'              => 'action taken failed.'
+        'msg_success'           => 'Action performed successfully.',
+        'msg_fail'              => 'Action taken failed.'
     ],
 ];
