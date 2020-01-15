@@ -7,6 +7,7 @@ return [
     'management'    => [
         'manage_dashboard'         => 'Dashboard',
         'manage_client'            => 'Management Client',
+        'manage_user'              => 'Management User',
     ],
     'button'        => [
         'btn_close'         => 'Close',
@@ -21,5 +22,11 @@ return [
     'message'        => [
         'msg_success'           => 'Action performed successfully.',
         'msg_fail'              => 'Action taken failed.'
+    ],
+    'header'          => [
+        'success'           => 'Success',
+        'fail'              => 'Fail',
+        'error'             => 'Error',
+        'delete'            => 'Confirm Delete',
     ],
 ];

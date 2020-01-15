@@ -19,8 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'admin', 'middleware' => ['auth']], function () {
 
-    // Users
+    // Clients
     require_once('sub_routes/oauthClient.php');
+    // Users
+    require_once('sub_routes/user.php');
 });
