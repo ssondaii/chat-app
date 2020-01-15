@@ -1,23 +1,23 @@
 <?php
 return [
-    'title'          => 'Users',
-    'title_singular' => 'Management Users',
+    'title'          => 'OAuth Clients',
+    'title_singular' => 'OAuth Client',
     'fields'         => [
-        'id'                => 'STT',
+        'id'                => 'Client ID',
+        'secret'            => 'Client Secret',
         'name'              => 'Name',
-        'email'             => 'Email',
-        'created_at'        => 'Created at',
-        'updated_at'        => 'Updated at',
+        'url'               => 'URL Redirect',
         'action'            => 'Action',
     ],
     'button'          => [
-        'btn-edit'          => 'Edit',
-        'btn-delete'        => 'Delete',
+        'create'            => 'Create New Oauth client',
         'btn-close'         => 'Close',
         'btn-create'        => 'Create',
         'btn-confirm'       => 'Confirm',
         'btn-cancel'        => 'Cancel',
         'btn-save'          => 'Save',
+        'btn-edit'          => 'Edit',
+        'btn-delete'        => 'Delete',
     ],
     'label'           => [
         'create_name'       => 'Name',

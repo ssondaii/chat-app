@@ -17,7 +17,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('oauthClient.button.btn-close') }}</button>
-                <form id="deleteOAuthClientForm" action="{{ route('admin.users.delete') }}" method="POST"  style="display: inline-block;">
+                <form id="deleteOAuthClientForm" action="{{ route('admin.clients.delete') }}" method="POST"  style="display: inline-block;">
                     <input type="hidden" name="_method" value="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="clientIdDelete" value="">

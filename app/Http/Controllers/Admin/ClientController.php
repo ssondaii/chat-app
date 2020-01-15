@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OAuthClient\CreateOAuthClientRequest;
+use App\Http\Requests\OAuthClient\EditOAuthClientRequest;
+use App\Http\Requests\OAuthClient\DeleteOAuthClientRequest;
+use App\Services\OAuthClientServices;
 use Illuminate\Http\Request;
-use App\Services\UserServices;
 
-class UserController extends Controller
+class ClientController extends Controller
 {
     const CLIENT_PER_PAGE = 5;
 
-    protected $userService;
+    protected $oauthService;
 
-    public function __construct(UserServices $service){
-        $this->userService = $service;
+    public function __construct(OAuthClientServices $service){
+        $this->oauthService = $service;
     }
 
     /**
@@ -21,8 +24,9 @@ class UserController extends Controller
      * @return array
      */
     public function index(){
-        return view('admin/users.index',[
-            'users' => $this->userService->getAllUser()
+
+        return view('admin/clients.index',[
+            'clients' => $this->oauthService->getAllClient(self::CLIENT_PER_PAGE)
         ]);
     }
 

@@ -87,4 +87,12 @@ abstract class EloquentRepository implements RepositoryInterface {
         return false;
     }
 
+    /**
+     * Pagination
+     * @param $perPage
+     * @return mixed
+     */
+    public function paginate($perPage){
+        return $this->_model->paginate($perPage);
+    }
 }

@@ -1,18 +1,23 @@
 <?php
 namespace App\Services;
 
-use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\OAuthClient\OAuthClientRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class UserServices{
+class OAuthClientServices{
 
-    protected $userRepo;
+    const DEFAULT_PERSONAL_ACCESS_CLIENT = 0;
+    const DEFAULT_PASSWORD_CLIENT = 0;
+    const DEFAULT_REVOKED_TRUE = 0;
+    const DEFAULT_REVOKED_FALSE = 1;
 
-    public function __construct(UserRepositoryInterface $repository){
-        $this->userRepo = $repository;
+    protected $oauthRepo;
+
+    public function __construct(OAuthClientRepositoryInterface $repository){
+        $this->oauthRepo = $repository;
     }
 
     /**
@@ -21,8 +26,8 @@ class UserServices{
      * @param $perPage
      * @return array
      */
-    public function getAllUser(){
-        return $this->userRepo->getAll();
+    public function getAllClient($perPage){
+        return $this->oauthRepo->getAllOAuthClientWithPagination($perPage);
     }
 
     /**
@@ -45,7 +50,7 @@ class UserServices{
 
         DB::beginTransaction();
         try {
-            $this->userRepo->create($obj);
+            $this->oauthRepo->create($obj);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
@@ -70,7 +75,7 @@ class UserServices{
 
         DB::beginTransaction();
         try {
-            $this->userRepo->update($id, $obj);
+            $this->oauthRepo->update($id, $obj);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
@@ -95,7 +100,7 @@ class UserServices{
 
         DB::beginTransaction();
         try {
-            $this->userRepo->update($id, $obj);
+            $this->oauthRepo->update($id, $obj);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
