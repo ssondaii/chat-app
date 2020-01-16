@@ -3,6 +3,6 @@ namespace App\Repositories\user;
 
 interface UserRepositoryInterface{
 
-    public function createOrUpdateUser($data, $id);
+    public function createOrUpdateUser($data);
 
 }

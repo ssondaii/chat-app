@@ -11,6 +11,7 @@
             <div class="modal-body">
                 <form action="{{ route('admin.users.store') }}" method="POST" id="formCreateUser">
                     {{ csrf_field() }}
+                    <input id="user-id-input" type="hidden" name="userId" value="">
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{ trans('user.label.create_name') }}</label>
                         <div class="col-md-9">

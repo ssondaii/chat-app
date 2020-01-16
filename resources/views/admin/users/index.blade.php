@@ -39,10 +39,10 @@
                                     <button id="edit-[{{ $key }}]"
                                             class="btn btn-xs btn-info"
                                             data-id="{{ $user->id }}"
-                                            data-name="{{ $user->email }}"
-                                            data-url="{{ $user->created_at }}"
+                                            data-name="{{ $user->name }}"
+                                            data-email="{{ $user->email }}"
                                             data-toggle="modal"
-                                            data-target="#modalEditOAuthClient"
+                                            data-target="#modalCreateUser"
                                     >{{ trans('global.button.btn_edit') }}</button>
                                 </td>
                                 <td class="col-1">
@@ -52,7 +52,7 @@
                                             data-name="{{ $user->email }}"
                                             data-url="{{ $user->created_at }}"
                                             data-toggle="modal"
-                                            data-target="#modalConfirmDelete"
+                                            data-target="#modalCreateUser"
                                     >{{ trans('global.button.btn_delete') }}</button>
                                 </td>
                             </tr>

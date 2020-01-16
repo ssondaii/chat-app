@@ -13,16 +13,15 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
         return User::class;
     }
 
-    public function createOrUpdateUser($data, $id)
+    public function createOrUpdateUser($data)
     {
         User::updateOrCreate(
             [
-                'id'            => $id,
-                'email'         => $data['userEmail'],
+                'id'            => $data['userId'],
             ],
             [
+                'email'         => $data['userEmail'],
                 'name'          => $data['userName'],
-                'password'      => Hash::make('12345678'),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ]

@@ -40,17 +40,6 @@ $(document).ready(function() {
         }
     }
 
-    //show edit oauth-client form
-    // $('#modalEditOAuthClient').on('show.bs.modal', function(e) {
-    //     let button = $(e.relatedTarget);
-    //     let editForm = $('#editOAuthClientForm');
-    //     editForm.find('input[name="clientIdEdit"]').val(button.attr('data-id'));
-    //     editForm.find('input[name="clientNameEdit"]').val(button.attr('data-name'));
-    //     editForm.find('input[name="clientUrlEdit"]').val(button.attr('data-url'));
-    //
-    //     clearEditForm();
-    // });
-
     //show modal confirm before delete client
     // $('#modalConfirmDelete').on('show.bs.modal', function(e) {
     //     let button = $(e.relatedTarget);
@@ -68,18 +57,17 @@ $(document).ready(function() {
     //when modal create show up
     modal_create_user.on('show.bs.modal', function(e) {
         clearCreateForm();
+
+        let button = $(e.relatedTarget);
+
+        form_create_user.find('input[name="userId"]').val(button.attr('data-id'));
+        form_create_user.find('input[name="userName"]').val(button.attr('data-name'));
+        form_create_user.find('input[name="userEmail"]').val(button.attr('data-email'));
     });
 
     //remove class help-block of <input> and remove <span class='help-block'>
-    // function clearEditForm(){
-    //     let createForm = $('#editOAuthClientForm');
-    //
-    //     createForm.find('input').removeClass("help-block");
-    //     createForm.find('span.help-block').remove();
-    // }
-
-    //remove class help-block of <input> and remove <span class='help-block'>
     function clearCreateForm() {
+        form_create_user.find('input[name="userId"]').val('');
         form_create_user.find('input[name="userName"]').val('');
         form_create_user.find('input[name="userEmail"]').val('');
 

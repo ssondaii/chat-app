@@ -31,11 +31,9 @@ class UserServices{
     */
     public function createOrUpdateUser($data){
 
-        $id = isset($data['id']) ? $data['id'] : null;
-
         DB::beginTransaction();
         try {
-            $this->userRepo->createOrUpdateUser($data, $id);
+            $this->userRepo->createOrUpdateUser($data);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
