@@ -24,7 +24,7 @@ class CreateOrUpdateUserRequest extends FormRequest
      * @return array
      */
     public function rules(Request $request){
-        //dd($request['userId']);
+
         return [
             'userName'      => 'required',
             'userEmail'     => 'required|email|unique:users,email,' . $request['userId'],

@@ -1,18 +1,13 @@
 $(document).ready(function() {
 
     let btn_save_user = $('#btn-create-user');
-    let btn_edit_user = $('#btn-create-user');
-    let btn_delete_user = $('#btn-create-user');
     let modal_create_user = $('#modalCreateUser');
-    let modal_delete_user = $('#modalCreateUser');
+    let modal_delete_user = $('#modalDeleteUser');
     let modal_error = $('#modalError');
     let modal_success = $('#modalSuccess');
     let modal_fail = $('#modalFail');
     let status = $('#status_flg');
     let form_create_user = $('#formCreateUser');
-    let form_delete_user = $('#formCreateUser');
-    let form_create_user_field_name = 'userName';
-    let form_create_user_field_email = 'userEmail';
 
 
     //validate and submit form create new oauth-client
@@ -41,18 +36,17 @@ $(document).ready(function() {
     }
 
     //show modal confirm before delete client
-    // $('#modalConfirmDelete').on('show.bs.modal', function(e) {
-    //     let button = $(e.relatedTarget);
-    //     let deleteModal = $('#deleteOAuthClientForm');
-    //
-    //     deleteModal.find('input[name="clientIdDelete"]').val(button.data('id'));
-    //
-    //     $('.debug-information').html(
-    //         '<p>Client ID: <strong>' + button.data('id') + '</strong></p>' +
-    //         '<p>Client Name: <strong>' + button.data('name') + '</strong></p>' +
-    //         '<p>Client Redirect URL: <strong>' + button.data('url') + '</strong></p>'
-    //     );
-    // });
+    modal_delete_user.on('show.bs.modal', function(e) {
+        let button = $(e.relatedTarget);
+
+        modal_delete_user.find('input[name="userId"]').val(button.data('id'));
+
+        $('.debug-information').html(
+            '<p>User ID: <strong>' + button.data('id') + '</strong></p>' +
+            '<p>User Name: <strong>' + button.data('name') + '</strong></p>' +
+            '<p>User Email: <strong>' + button.data('email') + '</strong></p>'
+        );
+    });
 
     //when modal create show up
     modal_create_user.on('show.bs.modal', function(e) {

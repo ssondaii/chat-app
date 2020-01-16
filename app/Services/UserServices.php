@@ -44,21 +44,15 @@ class UserServices{
     }
 
     /**
-     * delete a client.
+     * delete a user.
      * @param $data
      * @return boolean
      */
     public function deleteUser($data){
-        $id = $data['clientIdDelete'];
-
-        $obj    = [
-            'revoked'       => self::DEFAULT_REVOKED_FALSE,
-            'updated_at'    => Carbon::now(),
-        ];
 
         DB::beginTransaction();
         try {
-            $this->oauthRepo->update($id, $obj);
+            $this->userRepo->delete($data['userId']);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());

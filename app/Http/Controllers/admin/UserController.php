@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\user\DeleteUserRequest;
 use App\Http\Requests\user\CreateOrUpdateUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserServices;
@@ -44,47 +45,18 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * delete user
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function show($id)
+    public function delete(DeleteUserRequest $request)
     {
-        //
-    }
+        $data = $request->all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if($this->userService->deleteUser($data)){
+            return redirect()->route('admin.users.index')->with('status', 1);
+        }
+        return redirect()->back()->with('status', -1);
     }
 }

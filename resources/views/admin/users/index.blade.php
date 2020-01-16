@@ -49,10 +49,10 @@
                                     <button id="delete-[{{ $key }}]"
                                             class="btn btn-xs btn-danger"
                                             data-id="{{ $user->id }}"
-                                            data-name="{{ $user->email }}"
-                                            data-url="{{ $user->created_at }}"
+                                            data-name="{{ $user->name }}"
+                                            data-email="{{ $user->email }}"
                                             data-toggle="modal"
-                                            data-target="#modalCreateUser"
+                                            data-target="#modalDeleteUser"
                                     >{{ trans('global.button.btn_delete') }}</button>
                                 </td>
                             </tr>
@@ -70,8 +70,7 @@
     </div>
 
     @include('admin/users/modal._modalCreateUser')
-{{--    @include('admin/clients/modal._modalEditClient')--}}
-{{--    @include('admin/clients/modal._modalConfirmDeleteClient')--}}
+    @include('admin.users.modal._modalDeleteUser')
     @include('admin/modal._modalError')
     @include('admin/modal._modalResult')
 
