@@ -79,5 +79,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/OauthClient/index.js') }}"></script>
-    <script src="{{ asset('js/OauthClient/validation.js') }}"></script>
+    <script src="{{ asset('validationUser.jsr.js') }}"></script>
 @endsection

@@ -3,9 +3,6 @@
     <link href="{{ asset('css/user/index.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    @if(session('status'))
-        <input type="hidden" id="status_flg" value="{{ session('status') }}">
-    @endif
     <div class="card">
         <div class="card-header">
             {{ trans('user.title') }}
@@ -15,7 +12,7 @@
             <button type="button"
                     class="btn btn-outline-success"
                     data-toggle="modal"
-                    data-target="#modalCreateNewOAuthClient"
+                    data-target="#modalCreateUser"
                     style="margin-bottom: 10px;">
                 {{ trans('global.button.btn_create') }}
             </button>
@@ -31,32 +28,32 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(isset($clients) && count($client)>0)
-                        @foreach($clients as $key => $client)
-                            <tr class="row" data-entry-id="{{ $client->id }}">
-                                <td class="col-1">{{ $client->id ?? '' }}</td>
-                                <td class="col-2">{{ $client->name ?? '' }}</td>
-                                <td class="col-3">{{ $client->secret ?? '' }}</td>
-                                <td class="col-4">{{ $client->redirect ?? '' }}</td>
+                    @if(isset($users) && count($users)>0)
+                        @foreach($users as $key => $user)
+                            <tr class="row" data-entry-id="{{ $user->id }}">
+                                <td class="col-1">{{ $key + 1 }}</td>
+                                <td class="col-2">{{ $user->name ?? '' }}</td>
+                                <td class="col-3">{{ $user->email ?? '' }}</td>
+                                <td class="col-4">{{ $user->created_at ?? '' }}</td>
                                 <td class="col-1">
                                     <button id="edit-[{{ $key }}]"
                                             class="btn btn-xs btn-info"
-                                            data-id="{{ $client->id }}"
-                                            data-name="{{ $client->name }}"
-                                            data-url="{{ $client->redirect }}"
+                                            data-id="{{ $user->id }}"
+                                            data-name="{{ $user->email }}"
+                                            data-url="{{ $user->created_at }}"
                                             data-toggle="modal"
                                             data-target="#modalEditOAuthClient"
-                                    >{{ trans('oauthClient.button.btn-edit') }}</button>
+                                    >{{ trans('global.button.btn_edit') }}</button>
                                 </td>
                                 <td class="col-1">
                                     <button id="delete-[{{ $key }}]"
                                             class="btn btn-xs btn-danger"
-                                            data-id="{{ $client->id }}"
-                                            data-name="{{ $client->name }}"
-                                            data-url="{{ $client->redirect }}"
+                                            data-id="{{ $user->id }}"
+                                            data-name="{{ $user->email }}"
+                                            data-url="{{ $user->created_at }}"
                                             data-toggle="modal"
                                             data-target="#modalConfirmDelete"
-                                    >{{ trans('oauthClient.button.btn-delete') }}</button>
+                                    >{{ trans('global.button.btn_delete') }}</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,14 +62,14 @@
                 </table>
             </div>
         </div>
-{{--        @if(isset($clients) && count($clients) > 0 && $clients instanceof \Illuminate\Pagination\LengthAwarePaginator )--}}
-{{--            <div class="pagination-sm">--}}
-{{--                {{ $clients->links() }}--}}
-{{--            </div>--}}
-{{--        @endif--}}
+        @if(isset($users) && count($users) > 0 && $users instanceof \Illuminate\Pagination\LengthAwarePaginator )
+            <div class="pagination-sm">
+                {{ $users->links() }}
+            </div>
+        @endif
     </div>
 
-{{--    @include('admin/clients/modal._modalCreateClient')--}}
+    @include('admin/users/modal._modalCreateUser')
 {{--    @include('admin/clients/modal._modalEditClient')--}}
 {{--    @include('admin/clients/modal._modalConfirmDeleteClient')--}}
     @include('admin/modal._modalError')
@@ -81,5 +78,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/user/index.js') }}"></script>
-    <script src="{{ asset('js/user/validation.js') }}"></script>
+    <script src="{{ asset('js/user/validationUser.js') }}"></script>
 @endsection

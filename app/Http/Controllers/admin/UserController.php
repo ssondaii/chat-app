@@ -3,17 +3,28 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\user\CreateOrUpdateUserRequest;
 use Illuminate\Http\Request;
+use App\Services\UserServices;
 
 class UserController extends Controller
 {
+
+    protected $userService;
+
+    public function __construct(UserServices $services){
+        $this->userService = $services;
+    }
+
     /**
      * Get all user and return to view.
      * @return array
      */
     public function index()
     {
-        return view('admin/users.index');
+        return view('admin/users.index',[
+            'users' => $this->userService->getAllUser()
+        ]);
     }
 
     /**
@@ -27,14 +38,19 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a user
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  $request
+     * @return array
      */
-    public function store(Request $request)
+    public function store(CreateOrUpdateUserRequest $request)
     {
-        //
+        $data = $request->all();
+
+        if($this->userService->createOrUpdateUser($data)){
+            return redirect()->route('admin.users.index')->with('status', 1);
+        }
+        return redirect()->back()->with('status', -1);
     }
 
     /**

@@ -2,7 +2,6 @@
 namespace App\Repositories\OAuthClient;
 
 use App\Repositories\EloquentRepository;
-use App\Repositories\OAuthClient\OAuthClientRepositoryInterface;
 use App\Models\OAuthClient;
 
 class OAuthClientEloquentRepository extends EloquentRepository implements OAuthClientRepositoryInterface{

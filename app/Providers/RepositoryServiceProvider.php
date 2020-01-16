@@ -34,8 +34,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function registerPermissionRepository()
     {
         $this->app->bind(
-            \App\Repositories\OAuthClient\OAuthClientRepositoryInterface::class,
-            \App\Repositories\OAuthClient\OAuthClientEloquentRepository::class
+            \App\Repositories\user\UserRepositoryInterface::class,
+            \App\Repositories\user\UserEloquentRepository::class
         );
     }
 }

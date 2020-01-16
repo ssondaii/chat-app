@@ -12,15 +12,11 @@ return [
         'create_name'       => 'Name',
         'create_email'      => 'Email',
     ],
-    'error'           => [
-        'create_userName_required'    => 'Please provide a name.',
-        'create_userEmail_required'     => 'Please provide a redirect url.',
-        'edit_clientIdEdit_required'    => 'Please provide a id.',
-        'edit_clientIdEdit_notExists'   => 'This id is not exists.',
-        'edit_clientNameEdit_required'  => 'Please provide a name.',
-        'edit_clientUrlEdit_required'   => 'Please provide a redirect url.',
-        'delete_clientIdDelete_required'    => 'Please provide a id.',
-        'delete_clientIdDelete_notExists'   => 'This id is not exists.',
+    'validate'           => [
+        'userName_required'             => 'Please provide a name.',
+        'userEmail_required'            => 'Please provide a email.',
+        'userEmail_email'               => 'Email must be in proper format.',
+        'userEmail_unique'              => 'Email must be unique in users table.',
     ],
     'header'          => [
         'create'            => 'Create User',

@@ -1,3 +1,6 @@
+@if(session('status'))
+    <input type="hidden" id="status_flg" value="{{ session('status') }}">
+@endif
 {{--begin modal result success--}}
 <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
