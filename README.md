@@ -7,10 +7,8 @@ $ git clone https://github.com/ssondaii/chat-app.git
 
 $ composer install
 
-$ npm install
-Edit configuration file in app/config/config.json with your credentials(see Setup Configurations).
-
-Start the application
+$ npm install & npm run dev
 
 $ php artisan serve
+
 Your app should now be running on localhost:8000.
