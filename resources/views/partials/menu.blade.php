@@ -23,11 +23,21 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                        <i class="fa-fw fas fa-building">
+                        <i class="fa-fw fas fa-user">
 
                         </i>
                         <p>
                             <span>{{ trans('global.management.manage_user') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-wrench">
+
+                        </i>
+                        <p>
+                            <span>{{ trans('global.management.manage_role') }}</span>
                         </p>
                     </a>
                 </li>

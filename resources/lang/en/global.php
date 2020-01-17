@@ -8,6 +8,7 @@ return [
         'manage_dashboard'         => 'Dashboard',
         'manage_client'            => 'Management Client',
         'manage_user'              => 'Management User',
+        'manage_role'              => 'Management Role',
     ],
     'button'        => [
         'btn_close'         => 'Close',

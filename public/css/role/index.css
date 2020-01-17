@@ -1,0 +1,22 @@
+.text-align-center{
+    text-align: center;
+}
+.text-align-left{
+    text-align: left;
+}
+.element-align-center{
+    margin: auto;
+}
+.help-block{
+    color: #ff0000;
+    border-color: #ff0000;
+}
+.modal-open{
+    padding-right: 0 !important;
+}
+.pagination{
+    justify-content: center;
+}
+.input-checkbox{
+    width: 20px;
+}

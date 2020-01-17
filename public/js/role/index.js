@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
-    let btn_save_user = $('#btn-create-role');
-    let modal_create_user = $('#modalCreateRole');
-    let modal_delete_user = $('#modalDeleteRole');
+    let btn_save_user = $('#btn-create-user');
+    let modal_create_user = $('#modalCreateUser');
+    let modal_delete_user = $('#modalDeleteUser');
     let modal_error = $('#modalError');
     let modal_success = $('#modalSuccess');
     let modal_fail = $('#modalFail');
     let status = $('#status_flg');
-    let form_create_user = $('#formCreateRole');
+    let form_create_user = $('#formCreateUser');
 
 
     //validate and submit form create new oauth-client
     btn_save_user.on('click', function () {
-        let validation = new validationRole();
+        let validation = new validationUser();
         validation.validateCreate();
 
         if(form_create_user.valid()){
