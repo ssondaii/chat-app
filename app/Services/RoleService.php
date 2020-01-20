@@ -64,4 +64,27 @@ class RoleService{
         return true;
     }
 
+    /**
+     * update role admin.
+     * @param $data
+     * @return boolean
+     */
+    public function updateRoleAdmin($data){
+
+        $obj = [
+            'isAdmin'       => $data['role_admin'],
+            'updated_at'    => Carbon::now(),
+        ];
+
+        DB::beginTransaction();
+        try {
+            $this->roleRepo->update($data['role_id'], $obj);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+            return false;
+        }
+        DB::commit();
+        return true;
+    }
 }

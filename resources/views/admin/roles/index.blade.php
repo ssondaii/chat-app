@@ -3,6 +3,8 @@
     <link href="{{ asset('css/role/index.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+    <input type="hidden" id="url_update_role_admin" value="{{ route('admin.roles.update_role_admin') }}">
+
     <div class="card">
         <div class="card-header">
             {{ trans('role.title') }}
@@ -34,7 +36,7 @@
                                 <td class="col-2">{{ $role->name ?? '' }}</td>
                                 <td class="col-2">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="checkbox-isAdmin input-checkbox" @if($role->isAdmin === 1) checked="checked"  @endif>
+                                        <input type="checkbox" class="checkbox-isAdmin input-checkbox" value="{{$role->id}}" @if($role->isAdmin === 1) checked="checked"  @endif>
                                     </div>
                                 </td>
                                 <td class="col-1">

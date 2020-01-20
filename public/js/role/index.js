@@ -68,4 +68,42 @@ $(document).ready(function() {
         form_create.find('input').removeClass("help-block");
         form_create.find('span.help-block').remove();
     }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    //update database when change checkbox isAdmin
+    $('.checkbox-isAdmin').on('click',  function () {
+        // console.log($(this).val());
+        // console.log($(this).is(':checked'));
+        let role_id = $(this).val();
+        let role_admin = 0;
+        if($(this).is(':checked')){
+            role_admin = 1;
+        }
+
+        $.ajax({
+            type: "POST",
+            data: {
+                role_id: role_id,
+                role_admin: role_admin
+            },
+            url: $('#url_update_role_admin').val(),
+        }).done(function( result ) {
+            if ( result === 1 ){
+                console.log('update role success!');
+            }else if ( result === -1 ){
+                console.log('update role fail!');
+            }
+
+        }).fail(function( result ) {
+            if(result.status === 422 ){
+                console.log(result);
+                console.log('validate role fail!');
+            }
+        });
+    });
 });

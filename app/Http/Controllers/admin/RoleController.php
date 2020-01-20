@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\RoleService;
 use App\Http\Requests\Role\CreateOrUpdateRoleRequest;
+use App\Http\Requests\Role\UpdateRoleAdminRequest;
 use Illuminate\Http\Response;
 
 class RoleController extends Controller
@@ -22,8 +23,7 @@ class RoleController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index(){
         return view('admin/roles.index', [
             'roles' => $this->roleService->getAllRole()
         ]);
@@ -35,14 +35,22 @@ class RoleController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(CreateOrUpdateRoleRequest $request)
-    {
+    public function store(CreateOrUpdateRoleRequest $request){
         $data = $request->all();
 
         if($this->roleService->createOrUpdateRole($data)){
             return redirect()->route('admin.roles.index')->with('status', 1);
         }
         return redirect()->back()->with('status', -1);
+    }
+
+    public function updateRoleAdmin(UpdateRoleAdminRequest $request){
+        $data = $request->all();
+
+        if($this->roleService->updateRoleAdmin($data)){
+            return 1;
+        }
+        return -1;
     }
 
 }
