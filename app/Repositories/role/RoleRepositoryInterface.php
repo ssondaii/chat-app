@@ -3,6 +3,6 @@ namespace App\Repositories\role;
 
 interface RoleRepositoryInterface{
 
-    public function createOrUpdateRole($data);
+    public function createOrUpdateRole($data, $isAdmin);
 
 }

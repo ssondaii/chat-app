@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\user;
+namespace App\Http\Requests\role;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class CreateOrUpdateUserRequest extends FormRequest
+class CreateOrUpdateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +26,15 @@ class CreateOrUpdateUserRequest extends FormRequest
     public function rules(Request $request){
 
         return [
-            'userName'      => 'required',
-            'userEmail'     => 'required|email|unique:users,email,' . $request['userId'],
+            'roleName'      => 'required|max:10|unique:roles,name,' . $request['roleId'],
         ];
     }
 
     public function messages(){
         return [
-            'userName.required'    => trans('user.validate.userName_required'),
-            'userEmail.required'   => trans('user.validate.userEmail_required'),
-            'userEmail.email'      => trans('user.validate.userEmail_email'),
-            'userEmail.unique'     => trans('user.validate.userEmail_unique'),
+            'roleName.required'    => trans('role.validate.roleName_required'),
+            'roleName.max'         => trans('role.validate.roleName_maxlength_10'),
+            'roleName.unique'      => trans('role.validate.roleName_unique'),
         ];
     }
 

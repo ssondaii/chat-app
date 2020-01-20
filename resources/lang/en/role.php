@@ -12,12 +12,9 @@ return [
         'label2'            => 'isAdmin',
     ],
     'validate'           => [
-        'userName_required'             => 'Please provide a name.',
-        'userEmail_required'            => 'Please provide a email.',
-        'userEmail_email'               => 'Email must be in proper format.',
-        'userEmail_unique'              => 'Email must be unique in users table.',
-        'userId_required'               => 'Id must be required.',
-        'userId_exist'                  => 'User is not exist.',
+        'roleName_required'             => 'Please provide a name.',
+        'roleName_maxlength_10'         => 'The maximum length of this field is 10.',
+        'roleName_unique'               => 'Role Name must be unique in roles table.',
     ],
     'header'          => [
         'create'            => 'Create Role',

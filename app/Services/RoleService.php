@@ -31,9 +31,11 @@ class RoleService{
      */
     public function createOrUpdateRole($data){
 
+        $isAdmin = isset($data['roleIsAdmin']) ? 1 : 0;
+
         DB::beginTransaction();
         try {
-            $this->roleRepo->createOrUpdateRole($data);
+            $this->roleRepo->createOrUpdateRole($data, $isAdmin);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());

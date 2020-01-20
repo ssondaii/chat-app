@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\RoleService;
+use App\Http\Requests\Role\CreateOrUpdateRoleRequest;
+use Illuminate\Http\Response;
 
 class RoleController extends Controller
 {
@@ -16,9 +18,9 @@ class RoleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * get all roles and return to view
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -28,58 +30,19 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a role.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateOrUpdateRoleRequest $request)
     {
-        dd(1);
+        $data = $request->all();
+
+        if($this->roleService->createOrUpdateRole($data)){
+            return redirect()->route('admin.roles.index')->with('status', 1);
+        }
+        return redirect()->back()->with('status', -1);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

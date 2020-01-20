@@ -13,15 +13,15 @@ class RoleEloquentRepository extends EloquentRepository implements RoleRepositor
         return Role::class;
     }
 
-    public function createOrUpdateRole($data)
+    public function createOrUpdateRole($data, $isAdmin)
     {
         Role::updateOrCreate(
             [
-                'id'            => $data['userId'],
+                'id'            => $data['roleId'],
             ],
             [
-                'email'         => $data['userEmail'],
-                'name'          => $data['userName'],
+                'name'          => $data['roleName'],
+                'isAdmin'       => $isAdmin,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ]

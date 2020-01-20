@@ -1,5 +1,5 @@
 function validationRole(){
-    let form_create = $('#formCreateUser');
+    let form_create = $('#formCreateRole');
     let root = this;
 
     this.construct= function () {
@@ -36,21 +36,23 @@ function validationRole(){
     };
 
     this.validElementsCreate = function(){
-        $('input[name="userName"]').rules("add",{
+        $('input[name="roleName"]').rules("add",{
             required: true,
+            maxlength: 10,
             messages: {
-                required: 'Please provide a name.'
+                required: 'Please provide a name.',
+                maxlength: 'The maximum length of this field is 10.'
             }
         });
 
-        $('input[name="userEmail"]').rules("add",{
-            required: true,
-            email: true,
-            messages: {
-                required: 'Please provide a email.',
-                email: 'Email must be in proper format.'
-            }
-        });
+        // $('input[name="userEmail"]').rules("add",{
+        //     required: true,
+        //     email: true,
+        //     messages: {
+        //         required: 'Please provide a email.',
+        //         email: 'Email must be in proper format.'
+        //     }
+        // });
     };
     //end validate for create
 
