@@ -21,7 +21,7 @@ class UserServices{
      * @return array
      */
     public function getAllUser(){
-        return $this->userRepo->getAll();
+        return $this->userRepo->getAll()->sortBy('name');
     }
 
     /**

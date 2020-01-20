@@ -21,7 +21,7 @@ class RoleService{
      * @return array
      */
     public function getAllRole(){
-        return $this->roleRepo->getAll();
+        return $this->roleRepo->getAll()->sortBy('name');
     }
 
     /**
