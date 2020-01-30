@@ -75,6 +75,7 @@
 
     @include('admin/roles/modal._modalCreateRole')
     @include('admin/roles/modal._modalDeleteRole')
+    @include('admin/roles/modal._modalErrorForAjax')
     @include('admin/modal._modalError')
     @include('admin/modal._modalResult')
 

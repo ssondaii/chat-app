@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title element-align-center" id="modalErrorTitle">{{ trans('oauthClient.header.error') }}</h5>
+                    <h5 class="modal-title element-align-center" id="modalErrorTitle">{{ trans('global.header.error') }}</h5>
                 </div>
                 <div class="modal-body text-align-left element-align-center">
                     @foreach($errors->all() as $error)
@@ -11,7 +11,7 @@
                     @endforeach
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger element-align-center" data-dismiss="modal">{{ trans('oauthClient.button.btn-close') }}</button>
+                    <button type="button" class="btn btn-danger element-align-center" data-dismiss="modal">{{ trans('global.button.btn_close') }}</button>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ return [
     'fields'         => [
         'column1'            => 'STT',
         'column2'            => 'Name',
-        'column3'            => 'isAdmin',
+        'column3'            => 'Is Admin',
         'column4'            => 'Action',
     ],
     'label'           => [

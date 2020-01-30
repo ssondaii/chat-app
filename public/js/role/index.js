@@ -8,7 +8,7 @@ $(document).ready(function() {
     let modal_fail = $('#modalFail');
     let status = $('#status_flg');
     let form_create = $('#formCreateRole');
-
+    let modal_error_for_ajax = $('#modalErrorForAjax');
 
     //validate and submit form create new oauth-client
     btn_save.on('click', function () {
@@ -93,16 +93,24 @@ $(document).ready(function() {
             },
             url: $('#url_update_role_admin').val(),
         }).done(function( result ) {
-            if ( result === 1 ){
-                console.log('update role success!');
-            }else if ( result === -1 ){
-                console.log('update role fail!');
+            console.log('done!');
+            if ( result == 1 ){
+                modal_success.modal("show");
+            }else if ( result == -1 ){
+                modal_fail.modal("show");
             }
 
         }).fail(function( result ) {
             if(result.status === 422 ){
-                console.log(result);
-                console.log('validate role fail!');
+                let errors = result.responseJSON.errors;
+                let html_message = '';
+                for(let e in errors){
+                    let message = errors[e][0];
+                    html_message += '<p>' +  message + '</p>';
+                }
+
+                $('#message_error_content').html(html_message);
+                modal_error_for_ajax.modal("show");
             }
         });
     });
