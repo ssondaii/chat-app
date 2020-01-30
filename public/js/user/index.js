@@ -54,9 +54,9 @@ $(document).ready(function() {
 
         let button = $(e.relatedTarget);
 
-        form_create_user.find('input[name="userId"]').val(button.attr('data-id'));
-        form_create_user.find('input[name="userName"]').val(button.attr('data-name'));
-        form_create_user.find('input[name="userEmail"]').val(button.attr('data-email'));
+        form_create_user.find('input[name="userId"]').val(button.data('id'));
+        form_create_user.find('input[name="userName"]').val(button.data('name'));
+        form_create_user.find('input[name="userEmail"]').val(button.data('email'));
     });
 
     //remove class help-block of <input> and remove <span class='help-block'>

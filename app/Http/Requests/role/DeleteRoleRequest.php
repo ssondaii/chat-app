@@ -1,16 +1,16 @@
 <?php
-namespace App\Http\Requests\user;
+namespace App\Http\Requests\role;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Repositories\user\UserRepositoryInterface;
+use App\Repositories\role\RoleRepositoryInterface;
 use Illuminate\Validation\Validator;
 
-class DeleteUserRequest extends FormRequest{
+class DeleteRoleRequest extends FormRequest{
 
-    protected $userRepo;
+    protected $roleRepo;
 
-    public function __construct(UserRepositoryInterface $repository){
-        $this->userRepo = $repository;
+    public function __construct(RoleRepositoryInterface $repository){
+        $this->roleRepo = $repository;
     }
 
     /**
@@ -30,13 +30,13 @@ class DeleteUserRequest extends FormRequest{
      */
     public function rules(){
         return [
-            'userId'      => 'required',
+            'roleId'      => 'required',
         ];
     }
 
     public function messages(){
         return [
-            'userId.required'       => trans('user.validate.userId_required'),
+            'roleId.required'       => trans('role.validate.role_id_required'),
         ];
     }
 
@@ -54,9 +54,9 @@ class DeleteUserRequest extends FormRequest{
 
     public function checkInputData(Validator $validator){
         //check client is exists
-        $user = $this->userRepo->find($this->userId);
-        if(!$user){
-            $validator->errors()->add('userId',  trans('user.validate.userId_exist'));
+        $role = $this->roleRepo->find($this->roleId);
+        if(!$role){
+            $validator->errors()->add('roleId',  trans('role.validate.role_id_exist'));
         }
 
         return;

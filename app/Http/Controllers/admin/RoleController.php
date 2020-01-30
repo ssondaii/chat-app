@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\RoleService;
 use App\Http\Requests\Role\CreateOrUpdateRoleRequest;
 use App\Http\Requests\Role\UpdateRoleAdminRequest;
+use App\Http\Requests\Role\DeleteRoleRequest;
 use Illuminate\Http\Response;
 
 class RoleController extends Controller
@@ -44,6 +45,12 @@ class RoleController extends Controller
         return redirect()->back()->with('status', -1);
     }
 
+    /**
+     * update admin role.
+     *
+     * @param Request $request
+     * @return boolean
+     */
     public function updateRoleAdmin(UpdateRoleAdminRequest $request){
         $data = $request->all();
 
@@ -53,4 +60,19 @@ class RoleController extends Controller
         return -1;
     }
 
+    /**
+     * delete role
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function delete(DeleteRoleRequest $request)
+    {
+        $data = $request->all();
+
+        if($this->roleService->deleteRole($data)){
+            return redirect()->route('admin.roles.index')->with('status', 1);
+        }
+        return redirect()->back()->with('status', -1);
+    }
 }

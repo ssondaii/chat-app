@@ -54,7 +54,7 @@ class RoleService{
 
         DB::beginTransaction();
         try {
-            $this->roleRepo->delete($data['userId']);
+            $this->roleRepo->delete($data['roleId']);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());

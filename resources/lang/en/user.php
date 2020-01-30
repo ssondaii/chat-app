@@ -2,7 +2,7 @@
 return [
     'title'          => 'Management User',
     'fields'         => [
-        'column1'            => 'STT',
+        'column1'            => 'ID',
         'column2'            => 'Name',
         'column3'            => 'Email',
         'column4'            => 'Roles',

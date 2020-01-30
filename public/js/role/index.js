@@ -38,13 +38,18 @@ $(document).ready(function() {
     //show modal confirm before delete client
     modal_delete.on('show.bs.modal', function(e) {
         let button = $(e.relatedTarget);
+        let role_admin = false;
 
-        modal_delete.find('input[name="userId"]').val(button.data('id'));
+        if( button.data('roleadmin') === 1 ){
+            role_admin = true;
+        }
+
+        modal_delete.find('input[name="roleId"]').val(button.data('id'));
 
         $('.debug-information').html(
-            '<p>User ID: <strong>' + button.data('id') + '</strong></p>' +
-            '<p>User Name: <strong>' + button.data('name') + '</strong></p>' +
-            '<p>User Email: <strong>' + button.data('email') + '</strong></p>'
+            '<p>Role ID: <strong>' + button.data('id') + '</strong></p>' +
+            '<p>Role Name: <strong>' + button.data('name') + '</strong></p>' +
+            '<p>Role Admin: <strong>' + role_admin + '</strong></p>'
         );
     });
 
@@ -54,9 +59,11 @@ $(document).ready(function() {
 
         let button = $(e.relatedTarget);
 
-        // form_create.find('input[name="roleId"]').val(button.attr('data-id'));
-        // form_create.find('input[name="roleName"]').val(button.attr('data-name'));
-        // form_create.find('input[name="roleIsAdmin"]').val(button.attr('data-email'));
+        form_create.find('input[name="roleId"]').val(button.data('id'));
+        form_create.find('input[name="roleName"]').val(button.data('name'));
+        if( button.data('roleadmin') === 1 ){
+            form_create.find('input[name="roleIsAdmin"]').prop('checked', true);
+        }
     });
 
     //remove class help-block of <input> and remove <span class='help-block'>

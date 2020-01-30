@@ -16,7 +16,7 @@
                     style="margin-bottom: 10px;">
                 {{ trans('global.button.btn_create') }}
             </button>
-            <div class="table-responsive" style="padding: 10px">
+            <div class="table-responsive text-align-center" style="padding: 10px">
                 <table class=" table table-bordered table-hover datatable datatable-Client">
                     <thead>
                     <tr class="row">
@@ -31,7 +31,7 @@
                     @if(isset($users) && count($users)>0)
                         @foreach($users as $key => $user)
                             <tr class="row" data-entry-id="{{ $user->id }}">
-                                <td class="col-1">{{ $key + 1 }}</td>
+                                <td class="col-1">{{ $user->id }}</td>
                                 <td class="col-2">{{ $user->name ?? '' }}</td>
                                 <td class="col-3">{{ $user->email ?? '' }}</td>
                                 <td class="col-4">{{ $user->created_at ?? '' }}</td>
