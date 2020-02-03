@@ -4,7 +4,7 @@ return [
     'fields'         => [
         'column1'            => 'ID',
         'column2'            => 'Name',
-        'column3'            => 'Is Admin',
+        'column3'            => 'Permission',
         'column4'            => 'Update Time',
         'column5'            => 'Action',
     ],

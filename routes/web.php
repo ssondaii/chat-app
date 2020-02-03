@@ -27,4 +27,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'admin', 'mi
     require_once('sub_routes/user.php');
     // Roles
     require_once('sub_routes/role.php');
+    // Permissions
+    require_once('sub_routes/permission.php');
 });

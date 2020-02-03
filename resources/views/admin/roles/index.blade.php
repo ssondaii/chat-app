@@ -24,8 +24,8 @@
                     <tr class="row">
                         <th class="col-1">{{ trans('role.fields.column1') }}</th>
                         <th class="col-3">{{ trans('role.fields.column2') }}</th>
-                        <th class="col-3">{{ trans('role.fields.column3') }}</th>
-                        <th class="col-3">{{ trans('role.fields.column4') }}</th>
+                        <th class="col-4">{{ trans('role.fields.column3') }}</th>
+                        <th class="col-2">{{ trans('role.fields.column4') }}</th>
                         <th class="col-2" colspan="2">{{ trans('role.fields.column5') }}</th>
                     </tr>
                     </thead>
@@ -35,12 +35,12 @@
                             <tr class="row" data-entry-id="{{ $role->id }}">
                                 <td class="col-1">{{ $role->id }}</td>
                                 <td class="col-3">{{ $role->name ?? '' }}</td>
-                                <td class="col-3">
+                                <td class="col-4">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="checkbox-isAdmin input-checkbox" value="{{$role->id}}" @if($role->isAdmin === 1) checked="checked"  @endif>
                                     </div>
                                 </td>
-                                <td class="col-3">{{ $role->updated_at ?? '' }}</td>
+                                <td class="col-2">{{ $role->updated_at ?? '' }}</td>
                                 <td class="col-1">
                                     <button id="edit-[{{ $key }}]"
                                             class="btn btn-xs btn-info"

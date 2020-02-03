@@ -42,6 +42,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-lock">
+
+                        </i>
+                        <p>
+                            <span>{{ trans('global.management.manage_permission') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>
                             <i class="fas fa-fw fa-sign-out-alt">
