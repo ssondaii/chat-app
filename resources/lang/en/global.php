@@ -9,6 +9,7 @@ return [
         'manage_client'            => 'Management Client',
         'manage_user'              => 'Management User',
         'manage_role'              => 'Management Role',
+        'manage_permission'        => 'Management Permission',
     ],
     'button'        => [
         'btn_close'         => 'Close',

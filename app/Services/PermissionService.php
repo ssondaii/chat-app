@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\Models\Role;
+use App\Models\Permission;
 use App\Repositories\permission\PermissionRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -9,33 +9,31 @@ use Illuminate\Support\Facades\Hash;
 
 class PermissionService{
 
-    protected $roleRepo;
+    protected $perRepo;
 
     public function __construct(PermissionRepositoryInterface $repository){
-        $this->roleRepo = $repository;
+        $this->perRepo = $repository;
     }
 
     /**
-     * get all user.
+     * get all permission.
      *
      * @return array
      */
-    public function getAllRole(){
-        return $this->roleRepo->getAll()->sortBy('name');
+    public function getAllPermission(){
+        return $this->perRepo->getAll();
     }
 
     /**
-     * create user.
+     * create or update permission.
      * @param $data
      * @return boolean
      */
-    public function createOrUpdateRole($data){
-
-        $isAdmin = isset($data['roleIsAdmin']) ? 1 : 0;
+    public function createOrUpdatePermission($data){
 
         DB::beginTransaction();
         try {
-            $this->roleRepo->createOrUpdateRole($data, $isAdmin);
+            $this->perRepo->createOrUpdatePermission($data);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
@@ -46,15 +44,15 @@ class PermissionService{
     }
 
     /**
-     * delete a user.
+     * delete a permission.
      * @param $data
      * @return boolean
      */
-    public function deleteRole($data){
+    public function deletePermission($data){
 
         DB::beginTransaction();
         try {
-            $this->roleRepo->delete($data['roleId']);
+            $this->perRepo->delete($data['permissionId']);
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception($e->getMessage());
@@ -64,27 +62,4 @@ class PermissionService{
         return true;
     }
 
-    /**
-     * update role admin.
-     * @param $data
-     * @return boolean
-     */
-    public function updateRoleAdmin($data){
-
-        $obj = [
-            'isAdmin'       => $data['role_admin'],
-            'updated_at'    => Carbon::now(),
-        ];
-
-        DB::beginTransaction();
-        try {
-            $this->roleRepo->update($data['role_id'], $obj);
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e->getMessage());
-            return false;
-        }
-        DB::commit();
-        return true;
-    }
 }

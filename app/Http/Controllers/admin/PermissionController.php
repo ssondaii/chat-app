@@ -12,25 +12,25 @@ use Illuminate\Http\Response;
 class PermissionController extends Controller
 {
 
-    protected $roleService;
+    protected $permissionService;
 
     public function __construct(PermissionService $service){
-        $this->roleService = $service;
+        $this->permissionService = $service;
     }
 
     /**
-     * get all roles and return to view
+     * get all permissions and return to view
      *
      * @return Response
      */
     public function index(){
-        return view('admin/roles.index', [
-            'roles' => $this->roleService->getAllRole()
+        return view('admin/permissions.index', [
+            'permissions' => $this->permissionService->getAllPermission()
         ]);
     }
 
     /**
-     * Store a role.
+     * Store a permission.
      *
      * @param Request $request
      * @return Response
@@ -38,8 +38,8 @@ class PermissionController extends Controller
     public function store(CreateOrUpdatePermissionRequest $request){
         $data = $request->all();
 
-        if($this->roleService->createOrUpdateRole($data)){
-            return redirect()->route('admin.roles.index')->with('status', 1);
+        if($this->permissionService->createOrUpdatePermission($data)){
+            return redirect()->route('admin.permissions.index')->with('status', 1);
         }
         return redirect()->back()->with('status', -1);
     }
@@ -54,8 +54,8 @@ class PermissionController extends Controller
     {
         $data = $request->all();
 
-        if($this->roleService->deleteRole($data)){
-            return redirect()->route('admin.roles.index')->with('status', 1);
+        if($this->permissionService->deletePermission($data)){
+            return redirect()->route('admin.permissions.index')->with('status', 1);
         }
         return redirect()->back()->with('status', -1);
     }

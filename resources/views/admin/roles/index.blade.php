@@ -84,5 +84,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/role/index.js') }}"></script>
-    <script src="{{ asset('js/role/validationRole.js') }}"></script>
+    <script src="{{ asset('validationPermission.jsion.jsion.js') }}"></script>
 @endsection

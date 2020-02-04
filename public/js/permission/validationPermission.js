@@ -1,5 +1,5 @@
-function validationRole(){
-    let form_create = $('#formCreateRole');
+function validationPermission(){
+    let form_create = $('#formCreatePermission');
     let root = this;
 
     this.construct= function () {
@@ -36,12 +36,12 @@ function validationRole(){
     };
 
     this.validElementsCreate = function(){
-        $('input[name="roleName"]').rules("add",{
+        $('input[name="permissionName"]').rules("add",{
             required: true,
-            maxlength: 10,
+            maxlength: 25,
             messages: {
                 required: 'Please provide a name.',
-                maxlength: 'The maximum length of this field is 10.'
+                maxlength: 'The maximum length of this field is 25.'
             }
         });
 

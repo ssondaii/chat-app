@@ -7,10 +7,10 @@ use Illuminate\Validation\Validator;
 
 class DeletePermissionRequest extends FormRequest{
 
-    protected $roleRepo;
+    protected $perRepo;
 
     public function __construct(PermissionRepositoryInterface $repository){
-        $this->roleRepo = $repository;
+        $this->perRepo = $repository;
     }
 
     /**
@@ -30,13 +30,13 @@ class DeletePermissionRequest extends FormRequest{
      */
     public function rules(){
         return [
-            'roleId'      => 'required',
+            'permissionId'      => 'required',
         ];
     }
 
     public function messages(){
         return [
-            'roleId.required'       => trans('role.validate.role_id_required'),
+            'permissionId.required'       => trans('permission.validate.permission_id_required'),
         ];
     }
 
@@ -54,9 +54,9 @@ class DeletePermissionRequest extends FormRequest{
 
     public function checkInputData(Validator $validator){
         //check client is exists
-        $role = $this->roleRepo->find($this->roleId);
-        if(!$role){
-            $validator->errors()->add('roleId',  trans('role.validate.role_id_exist'));
+        $permission = $this->perRepo->find($this->permissionId);
+        if(!$permission){
+            $validator->errors()->add('permissionId',  trans('permission.validate.permission_id_exist'));
         }
 
         return;

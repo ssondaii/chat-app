@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories\permission;
 
+use App\Models\Permission;
 use App\Repositories\EloquentRepository;
-use App\Models\Role;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,18 +10,17 @@ class PermissionEloquentRepository extends EloquentRepository implements Permiss
 
     public function getModel()
     {
-        return Role::class;
+        return Permission::class;
     }
 
-    public function createOrUpdateRole($data, $isAdmin)
+    public function createOrUpdatePermission($data)
     {
-        Role::updateOrCreate(
+        Permission::updateOrCreate(
             [
-                'id'            => $data['roleId'],
+                'id'            => $data['permissionId'],
             ],
             [
-                'name'          => $data['roleName'],
-                'isAdmin'       => $isAdmin,
+                'name'          => $data['permissionName'],
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ]

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Role;
 
 class Permission extends Model
 {
@@ -13,8 +13,8 @@ class Permission extends Model
         'updated_at',
     ];
 
-    public function users()
+    public function roles()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Role::class);
     }
 }

@@ -26,25 +26,15 @@ class CreateOrUpdatePermissionRequest extends FormRequest
     public function rules(Request $request){
 
         return [
-            'roleName'      => 'required|max:10|unique:roles,name,' . $request['roleId'],
+            'permissionName'      => 'required|max:25|unique:permissions,name,' . $request['permissionId'],
         ];
     }
 
     public function messages(){
         return [
-            'roleName.required'    => trans('role.validate.roleName_required'),
-            'roleName.max'         => trans('role.validate.roleName_maxlength_10'),
-            'roleName.unique'      => trans('role.validate.roleName_unique'),
+            'permissionName.required'    => trans('permission.validate.permissionName_required'),
+            'permissionName.max'         => trans('permission.validate.permissionName_maxlength_25'),
+            'permissionName.unique'      => trans('permission.validate.permissionName_unique'),
         ];
     }
-
-//    protected function failedValidation(Validator $validator)
-//    {
-//        $errors = (new ValidationException($validator))->errors();
-//        throw new HttpResponseException(response()->json(
-//            [
-//                'errors' => $errors,
-//                'status_code' => 422,
-//            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
-//    }
 }

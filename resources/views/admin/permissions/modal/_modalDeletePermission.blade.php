@@ -20,7 +20,7 @@
                 <form id="formDeletePermission" action="{{ route('admin.permissions.delete') }}" method="POST"  style="display: inline-block;">
                     <input type="hidden" name="_method" value="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="roleId" value="">
+                    <input type="hidden" name="permissionId" value="">
                     <input type="submit" class="btn btn-danger" value="{{ trans('global.button.btn_delete') }}">
                 </form>
             </div>
