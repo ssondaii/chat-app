@@ -21,8 +21,8 @@
                     <thead>
                     <tr class="row">
                         <th class="col-1">{{ trans('permission.fields.column1') }}</th>
-                        <th class="col-3">{{ trans('permission.fields.column2') }}</th>
-                        <th class="col-2">{{ trans('permission.fields.column3') }}</th>
+                        <th class="col-5">{{ trans('permission.fields.column2') }}</th>
+                        <th class="col-4">{{ trans('permission.fields.column3') }}</th>
                         <th class="col-2" colspan="2">{{ trans('permission.fields.column4') }}</th>
                     </tr>
                     </thead>
@@ -31,8 +31,8 @@
                         @foreach($permissions as $key => $permission)
                             <tr class="row" data-entry-id="{{ $permission->id }}">
                                 <td class="col-1">{{ $permission->id }}</td>
-                                <td class="col-3">{{ $permission->name ?? '' }}</td>
-                                <td class="col-2">{{ $permission->updated_at ?? '' }}</td>
+                                <td class="col-5">{{ $permission->name ?? '' }}</td>
+                                <td class="col-4">{{ $permission->updated_at->format('d/m/Y') ?? '' }}</td>
                                 <td class="col-1">
                                     <button id="edit-[{{ $key }}]"
                                             class="btn btn-xs btn-info"

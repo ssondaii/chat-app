@@ -6,13 +6,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title element-align-center" id="modalSuccessTitle">{{ trans('oauthClient.header.success') }}</h5>
+                <h5 class="modal-title element-align-center" id="modalSuccessTitle">{{ trans('global.header.success') }}</h5>
             </div>
             <div class="modal-body text-align-center">
-                {{ trans('oauthClient.message.success') }}
+                {{ trans('global.message.msg_success') }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success element-align-center" data-dismiss="modal">{{ trans('oauthClient.button.btn-confirm') }}</button>
+                <button type="button" class="btn btn-success element-align-center" data-dismiss="modal">{{ trans('global.button.btn_confirm') }}</button>
             </div>
         </div>
     </div>
@@ -24,13 +24,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title element-align-center" id="modalFailTitle">{{ trans('oauthClient.header.fail') }}</h5>
+                <h5 class="modal-title element-align-center" id="modalFailTitle">{{ trans('global.header.fail') }}</h5>
             </div>
             <div class="modal-body text-align-center">
-                {{ trans('oauthClient.message.fail') }}
+                {{ trans('global.message.msg_fail') }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger element-align-center" data-dismiss="modal">{{ trans('oauthClient.button.btn-cancel') }}</button>
+                <button type="button" class="btn btn-danger element-align-center" data-dismiss="modal">{{ trans('global.button.btn_cancel') }}</button>
             </div>
         </div>
     </div>

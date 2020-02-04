@@ -25,7 +25,9 @@ class PermissionController extends Controller
      */
     public function index(){
         return view('admin/permissions.index', [
-            'permissions' => $this->permissionService->getAllPermission()
+            'permissions' => $this->permissionService
+                ->getAllPermission()
+                ->sortBy('name')
         ]);
     }
 
