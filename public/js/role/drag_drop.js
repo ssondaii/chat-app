@@ -1,3 +1,5 @@
-$(document).ready(function() {
-    console.log('a');
-});
+$( function() {
+    $( "#sortable1, #sortable2" ).sortable({
+        connectWith: ".connectedSortable"
+    }).disableSelection();
+} );

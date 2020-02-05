@@ -13,10 +13,18 @@ interface RoleRepositoryInterface{
     public function createOrUpdateRole($data);
 
     /**
-     * get role with permission igger loading
+     * get all role with permission igger loading
      *
      * @return array
      */
-    public function getRoleWithPermission();
+    public function getAllRoleWithPermission();
+
+    /**
+     * get 1 role with permission igger loading
+     *
+     * @param $id
+     * @return array
+     */
+    public function getRoleByIdWithPermission($id);
 
 }

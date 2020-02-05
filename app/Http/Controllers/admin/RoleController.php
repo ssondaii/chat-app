@@ -34,7 +34,7 @@ class RoleController extends Controller
     /**
      * Store a role.
      *
-     * @param Request $request
+     * @param CreateOrUpdateRoleRequest $request
      * @return Response
      */
     public function store(CreateOrUpdateRoleRequest $request){
@@ -53,10 +53,12 @@ class RoleController extends Controller
      * @return void
      */
     public function editRolePermission(DeleteRoleRequest $request){
+        $data = $request->all();
 
         return view('admin/roles.config_role_permission', [
-            'roles'         => $this->roleService->getAllRole(),
-            'permissions'   => Permission::all(),
+            'roles'                 => $this->roleService->getRoleById($data['roleId']),
+            'permissions'           => Permission::all(),
+            'diff_role_permission'  => $this->roleService->getDiffRolePermission($data['roleId']),
         ]);
     }
 

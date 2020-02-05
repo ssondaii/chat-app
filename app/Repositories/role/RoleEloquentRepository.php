@@ -33,12 +33,23 @@ class RoleEloquentRepository extends EloquentRepository implements RoleRepositor
     }
 
     /**
-     * get role with permission igger loading
+     * get all role with permission igger loading
      *
      * @return array
      */
-    public function getRoleWithPermission()
+    public function getAllRoleWithPermission()
     {
         return $this->_model::with('permissions')->get();
+    }
+
+    /**
+     * get 1 role with permission igger loading
+     *
+     * @param $id
+     * @return void
+     */
+    public function getRoleByIdWithPermission($id)
+    {
+        return $this->_model::with('permissions')->find($id);
     }
 }
