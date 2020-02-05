@@ -44,8 +44,17 @@
     float: right;
 }
 .drag-drop-item{
-    border: 1px solid #db8b0b;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+.left .drag-drop-item{
+    border: 1px solid #00a65a;
+    color: #00a65a;
+}
+.right .drag-drop-item{
+    border: 1px solid #d32535;
+    color: #d32535;
 }
