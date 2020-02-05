@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Services\RoleService;
 use App\Http\Requests\Role\CreateOrUpdateRoleRequest;
-use App\Http\Requests\Role\UpdateRoleAdminRequest;
 use App\Http\Requests\Role\DeleteRoleRequest;
 use Illuminate\Http\Response;
+use App\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -26,7 +27,7 @@ class RoleController extends Controller
      */
     public function index(){
         return view('admin/roles.index', [
-            'roles' => $this->roleService->getAllRole()
+            'roles'     => $this->roleService->getAllRole(),
         ]);
     }
 
@@ -46,18 +47,27 @@ class RoleController extends Controller
     }
 
     /**
-     * update admin role.
+     * get role permission.
+     *
+     * @param DeleteRoleRequest $request
+     * @return void
+     */
+    public function editRolePermission(DeleteRoleRequest $request){
+
+        return view('admin/roles.config_role_permission', [
+            'roles'         => $this->roleService->getAllRole(),
+            'permissions'   => Permission::all(),
+        ]);
+    }
+
+    /**
+     * update role permission.
      *
      * @param Request $request
      * @return boolean
      */
-    public function updateRoleAdmin(UpdateRoleAdminRequest $request){
-        $data = $request->all();
-
-        if($this->roleService->updateRoleAdmin($data)){
-            return 1;
-        }
-        return -1;
+    public function updateRolePermission(Request $request){
+        dd(2);
     }
 
     /**

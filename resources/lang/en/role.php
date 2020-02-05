@@ -1,6 +1,7 @@
 <?php
 return [
-    'title'          => 'Management Role',
+    'title'                 => 'Management Role',
+    'title_role_permission' => 'Management Role - Permission',
     'fields'         => [
         'column1'            => 'ID',
         'column2'            => 'Name',
@@ -18,9 +19,7 @@ return [
         'roleName_unique'               => 'Role Name must be unique in roles table.',
         'role_id_required'              => 'Role id must be required.',
         'role_id_exist'                 => 'This role is not exist.',
-        'role_admin_required'           => 'Checkbox value must be required.',
-        'role_admin_boolean'            => 'Checkbox value must be boolean( true, false, 1, 0).',
-        'role_id_is_being_used'         => 'This role id is being used.',
+        'role_id_integer'               => 'Role id must be integer.',
     ],
     'header'          => [
         'create'            => 'Create Role',

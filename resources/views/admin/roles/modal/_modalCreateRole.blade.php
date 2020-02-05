@@ -1,4 +1,4 @@
-{{--begin modal create new OAuth Client--}}
+{{--begin modal create new role--}}
 <div class="modal fade" id="modalCreateRole" tabindex="-1" role="dialog" aria-labelledby="modalCreateRole" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -18,13 +18,6 @@
                             <input id="role-name-input" name="roleName" type="text" class="form-control">
                         </div>
                     </div>
-                    <!-- Redirect URL -->
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label">{{ trans('role.label.label2') }}</label>
-                        <div class="col-md-9">
-                            <input id="role-isAdmin-input" name="roleIsAdmin" type="checkbox" class="form-control input-checkbox">
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -34,4 +27,4 @@
         </div>
     </div>
 </div>
-{{--end modal create new OAuth Client--}}
+{{--end modal create new role--}}

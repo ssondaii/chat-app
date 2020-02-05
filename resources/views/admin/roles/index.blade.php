@@ -3,8 +3,6 @@
     <link href="{{ asset('css/role/index.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    <input type="hidden" id="url_update_role_admin" value="{{ route('admin.roles.update_role_admin') }}">
-
     <div class="card">
         <div class="card-header">
             {{ trans('role.title') }}
@@ -23,8 +21,8 @@
                     <thead>
                     <tr class="row">
                         <th class="col-1">{{ trans('role.fields.column1') }}</th>
-                        <th class="col-3">{{ trans('role.fields.column2') }}</th>
-                        <th class="col-4">{{ trans('role.fields.column3') }}</th>
+                        <th class="col-2">{{ trans('role.fields.column2') }}</th>
+                        <th class="col-5">{{ trans('role.fields.column3') }}</th>
                         <th class="col-2">{{ trans('role.fields.column4') }}</th>
                         <th class="col-2" colspan="2">{{ trans('role.fields.column5') }}</th>
                     </tr>
@@ -34,19 +32,26 @@
                         @foreach($roles as $key => $role)
                             <tr class="row" data-entry-id="{{ $role->id }}">
                                 <td class="col-1">{{ $role->id }}</td>
-                                <td class="col-3">{{ $role->name ?? '' }}</td>
+                                <td class="col-2">{{ $role->name ?? '' }}</td>
                                 <td class="col-4">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="checkbox-isAdmin input-checkbox" value="{{$role->id}}" @if($role->isAdmin === 1) checked="checked"  @endif>
-                                    </div>
+                                    @foreach($role->permissions as $permission_key => $permission)
+                                        <span class="badge badge-info">{{ $permission->name }}</span>
+                                    @endforeach
                                 </td>
-                                <td class="col-2">{{ $role->updated_at ?? '' }}</td>
+                                <td class="col-1">
+                                    <form action="{{ route('admin.roles.edit_role_permission') }}" method="POST"  style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="roleId" value="{{ $role->id }}">
+                                        <input type="submit" class="btn btn-outline-info btn-sm" value="{{ trans('global.button.btn_edit') }}">
+                                    </form>
+                                </td>
+                                <td class="col-2">{{ $role->updated_at->format('d/m/Y') ?? '' }}</td>
                                 <td class="col-1">
                                     <button id="edit-[{{ $key }}]"
                                             class="btn btn-xs btn-info"
                                             data-id="{{ $role->id }}"
                                             data-name="{{ $role->name }}"
-                                            data-roleAdmin="{{ $role->isAdmin }}"
                                             data-toggle="modal"
                                             data-target="#modalCreateRole"
                                     >{{ trans('global.button.btn_edit') }}</button>
@@ -56,7 +61,6 @@
                                             class="btn btn-xs btn-danger"
                                             data-id="{{ $role->id }}"
                                             data-name="{{ $role->name }}"
-                                            data-roleAdmin="{{ $role->isAdmin }}"
                                             data-toggle="modal"
                                             data-target="#modalDeleteRole"
                                     >{{ trans('global.button.btn_delete') }}</button>
@@ -77,12 +81,11 @@
 
     @include('admin/roles/modal._modalCreateRole')
     @include('admin/roles/modal._modalDeleteRole')
-    @include('admin/roles/modal._modalErrorForAjax')
     @include('admin/modal._modalError')
     @include('admin/modal._modalResult')
 
 @endsection
 @section('scripts')
     <script src="{{ asset('js/role/index.js') }}"></script>
-    <script src="{{ asset('validationPermission.jsion.jsion.js') }}"></script>
+    <script src="{{ asset('js/role/validationRole.js') }}"></script>
 @endsection

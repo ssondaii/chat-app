@@ -30,13 +30,14 @@ class DeleteRoleRequest extends FormRequest{
      */
     public function rules(){
         return [
-            'roleId'      => 'required',
+            'roleId'      => 'required|integer',
         ];
     }
 
     public function messages(){
         return [
             'roleId.required'       => trans('role.validate.role_id_required'),
+            'roleId.integer'        => trans('role.validate.role_id_integer'),
         ];
     }
 

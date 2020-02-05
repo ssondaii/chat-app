@@ -13,7 +13,12 @@ class RoleEloquentRepository extends EloquentRepository implements RoleRepositor
         return Role::class;
     }
 
-    public function createOrUpdateRole($data, $isAdmin)
+    /**
+     * create or update role
+     *
+     * @param $data
+     */
+    public function createOrUpdateRole($data)
     {
         Role::updateOrCreate(
             [
@@ -21,10 +26,19 @@ class RoleEloquentRepository extends EloquentRepository implements RoleRepositor
             ],
             [
                 'name'          => $data['roleName'],
-                'isAdmin'       => $isAdmin,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ]
         );
+    }
+
+    /**
+     * get role with permission igger loading
+     *
+     * @return array
+     */
+    public function getRoleWithPermission()
+    {
+        return $this->_model::with('permissions')->get();
     }
 }
