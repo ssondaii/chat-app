@@ -25,5 +25,7 @@ return [
         'create'            => 'Create Role',
         'edit'              => 'Edit Role',
         'delete'            => 'Confirm Delete Role',
+        'attach'            => 'Attached Permissions',
+        'detach'            => 'Detached Permissions'
     ],
 ];

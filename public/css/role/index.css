@@ -21,8 +21,8 @@
     width: 20px;
 }
 #sortable1, #sortable2 {
-    min-height: 450px;
-    max-height: 450px;
+    min-height: 400px;
+    max-height: 400px;
     padding: 5px;
     overflow-y: auto;
 }
@@ -57,4 +57,7 @@
 .right .drag-drop-item{
     border: 1px solid #d32535;
     color: #d32535;
+}
+.drag-drop-header{
+    margin: 5px;
 }

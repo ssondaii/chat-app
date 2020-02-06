@@ -69,7 +69,10 @@ class RoleController extends Controller
      * @return boolean
      */
     public function updateRolePermission(Request $request){
-        dd(2);
+        dd($request->all());
+
+
+
     }
 
     /**

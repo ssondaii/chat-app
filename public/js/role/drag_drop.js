@@ -1,43 +1,53 @@
 $( function() {
-    $( "#sortable1, #sortable2" ).sortable({
+    let form_submit = $('#formUpdateRolePermission');
+    let btn_save    = $('#btn_save_role_permission');
+    let left        = $('#sortable1');
+    let right       = $('#sortable2');
+
+    left.sortable({
         connectWith: ".connectedSortable"
     }).disableSelection();
 
-    $('#sortable1').draggable({
-        scroll: true,
-        axis: "x",
-        containment: "body",
-        revert: true,
-        helper: "clone",
-        disable: false,
-        start: function( event, ui ) {
-            // $(ui.item).addClass("active-draggable");
-        },
-        drag: function( event, ui ) {
-        },
-        stop:function( event, ui ) {
-            // $(ui.item).removeClass("active-draggable");
-        }
-    });
+    right.sortable({
+        connectWith: ".connectedSortable"
+    }).disableSelection();
 
-    $('#sortable2').draggable({
-        scroll: true,
-        axis: "x",
-        containment: "body",
-        revert: true,
-        helper: "clone",
-        disable: false,
-        start: function( event, ui ) {
-            // $(ui.item).addClass("active-draggable");
-        },
-        drag: function( event, ui ) {
-        },
-        stop:function( event, ui ) {
-            // $(ui.item).removeClass("active-draggable");
-        }
-    });
+    // $('#sortable1').draggable({
+    //     scroll: true,
+    //     axis: "x",
+    //     containment: "body",
+    //     revert: true,
+    //     helper: "clone",
+    //     disable: false,
+    //     start: function( event, ui ) {
+    //         // $(ui.item).addClass("active-draggable");
+    //     },
+    //     drag: function( event, ui ) {
+    //     },
+    //     stop:function( event, ui ) {
+    //         // $(ui.item).removeClass("active-draggable");
+    //     }
+    // });
+    //
+    // $('#sortable2').draggable({
+    //     scroll: true,
+    //     axis: "x",
+    //     containment: "body",
+    //     revert: true,
+    //     helper: "clone",
+    //     disable: false,
+    //     start: function( event, ui ) {
+    //         // $(ui.item).addClass("active-draggable");
+    //     },
+    //     drag: function( event, ui ) {
+    //     },
+    //     stop:function( event, ui ) {
+    //         // $(ui.item).removeClass("active-draggable");
+    //     }
+    // });
 
-    $('#sortable1').droppable({
+    //when drop element to left zone.
+    left.droppable({
         // accept: "#div",
         // class: {
         //     "ui-droppable-active":"ac",
@@ -59,7 +69,9 @@ $( function() {
             // $(ui.item).css('background','green');
         },
     });
-    $('#sortable2').droppable({
+
+    //when drop element to right zone.
+    right.droppable({
         // accept: "#div",
         // class: {
         //     "ui-droppable-active":"ac",
@@ -90,4 +102,9 @@ $( function() {
     //         resetDefaultExportSize();
     //     },100);
     // });
+
+    //submit form in left zone.
+    btn_save.on('click', function () {
+        form_submit.submit();
+    });
 } );
