@@ -5,103 +5,62 @@ $( function() {
     let right       = $('#sortable2');
 
     left.sortable({
-        connectWith: ".connectedSortable"
+        connectWith: ".connectedSortable",
+        placeholder: "class-highlight-placeholder",
+        start : function(event, ui){
+            //get current element being sorted( before drop)
+            // $(ui.item)
+        },
+        stop : function(event, ui){
+            //when drag element from left and drop to right
+            if(right.has($(ui.item)).length){ // check if right has element from left
+                $(ui.item).find('input[name ="list_check_permission[]"]').prop( "checked", false );
+                console.log($(ui.item).find('input[name ="list_id_permission[]"]').val());
+            }
+        }
     }).disableSelection();
 
     right.sortable({
-        connectWith: ".connectedSortable"
+        connectWith: ".connectedSortable",
+        placeholder: "class-highlight-placeholder",
+        start : function(event, ui){
+            //get current element being sorted( before drop)
+            // $(ui.item)
+        },
+        stop : function(event, ui){
+            //when drag element from right and drop to left
+            if(left.has($(ui.item)).length){// check if left has element from right
+                $(ui.item).find('input[name ="list_check_permission[]"]').prop('checked', true);
+                console.log($(ui.item).find('input[name ="list_id_permission[]"]').val());
+            }
+        }
     }).disableSelection();
-
-    // $('#sortable1').draggable({
-    //     scroll: true,
-    //     axis: "x",
-    //     containment: "body",
-    //     revert: true,
-    //     helper: "clone",
-    //     disable: false,
-    //     start: function( event, ui ) {
-    //         // $(ui.item).addClass("active-draggable");
-    //     },
-    //     drag: function( event, ui ) {
-    //     },
-    //     stop:function( event, ui ) {
-    //         // $(ui.item).removeClass("active-draggable");
-    //     }
-    // });
-    //
-    // $('#sortable2').draggable({
-    //     scroll: true,
-    //     axis: "x",
-    //     containment: "body",
-    //     revert: true,
-    //     helper: "clone",
-    //     disable: false,
-    //     start: function( event, ui ) {
-    //         // $(ui.item).addClass("active-draggable");
-    //     },
-    //     drag: function( event, ui ) {
-    //     },
-    //     stop:function( event, ui ) {
-    //         // $(ui.item).removeClass("active-draggable");
-    //     }
-    // });
 
     //when drop element to left zone.
     left.droppable({
-        // accept: "#div",
-        // class: {
-        //     "ui-droppable-active":"ac",
-        //     "ui-droppable-hover":"hv"
-        // },
-        activate: function( event, ui ) {
-            // $(this).css('background','red');
-        },
         over: function( event, ui ) {
-            // $(this).css('background','yellow');
+            //when element hover left zone
         },
         out: function( event, ui ) {
-            // $(this).css('background','blue');
+            //when element out of left zone
         },
         drop: function( event, ui ) {
-            // $(this).css('background','white');
-        },
-        deactivate: function( event, ui ) {
-            // $(ui.item).css('background','green');
-        },
+            //when element drop to left zone
+        }
     });
 
     //when drop element to right zone.
     right.droppable({
-        // accept: "#div",
-        // class: {
-        //     "ui-droppable-active":"ac",
-        //     "ui-droppable-hover":"hv"
-        // },
-        activate: function( event, ui ) {
-            // $(this).css('background','red');
-        },
         over: function( event, ui ) {
-            // $(this).css('background','yellow');
+            //when element hover right zone
         },
         out: function( event, ui ) {
-            // $(this).css('background','blue');
+            //when element out of right zone
         },
         drop: function( event, ui ) {
-            // $(this).css('background','white');
-        },
-        deactivate: function( event, ui ) {
-            // $(ui.item).css('background','green');
-        },
+            //when element drop to right zone
+        }
     });
-
-    // $('#sortable1').bind("DOMSubtreeModified",function(){
-    //     setTimeout(function() {
-    //         $('#sortable1').find('input').prop('disabled', false);
-    //         $('#sortable2').find('input').prop('disabled', true);
-    //         $('#sortable2').find('input').prop('checked', false);
-    //         resetDefaultExportSize();
-    //     },100);
-    // });
 
     //submit form in left zone.
     btn_save.on('click', function () {

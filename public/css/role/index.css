@@ -61,3 +61,24 @@
 .drag-drop-header{
     margin: 5px;
 }
+.class-highlight-placeholder {
+    border: 1px solid #1da9f5;
+    border-radius: 5px;
+    background-color:#c1e3f5;
+    min-height: 36px;
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+}
+.drag-drop-item:hover{
+    border-color  : #1da9f5;
+    color         : #1da9f5;
+}
+[type="checkbox"]:disabled:not(:checked) + label{
+    box-shadow: none;
+    color: #d32535;
+}
+[type="checkbox"]:disabled:checked + label{
+    box-shadow: none;
+    color: #00a65a;
+}

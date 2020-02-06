@@ -92,7 +92,11 @@ class RoleService{
             array_column($permissions->toArray(), 'id')
         ];
 
-        return array_diff($array_all_permission, $array_role_permission);
+        $array_id_diff_role_permission =  array_diff($array_all_permission, $array_role_permission);
+
+        return array_filter($permissions->toArray(), function ($permission) use ($array_id_diff_role_permission) {
+            return in_array($permission['id'], $array_id_diff_role_permission);
+        });
     }
 
     /**

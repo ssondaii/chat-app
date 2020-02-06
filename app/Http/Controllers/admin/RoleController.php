@@ -58,8 +58,7 @@ class RoleController extends Controller
 
         return view('admin/roles.config_role_permission', [
             'roles'                 => $this->roleService->getRoleById($data['roleId']),
-            'permissions'           => Permission::all(),
-            'diff_role_permission'  => $this->roleService->getDiffRolePermission($data['roleId']),
+            'diff_permission'       => $this->roleService->getDiffRolePermission($data['roleId']),
         ]);
     }
 
