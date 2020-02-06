@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Requests\role;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Repositories\role\RoleRepositoryInterface;
 use Illuminate\Validation\Validator;
 
-class DeleteRoleRequest extends FormRequest{
+class UpdateRolePermissionRequest extends FormRequest{
 
     protected $roleRepo;
 
@@ -30,15 +31,19 @@ class DeleteRoleRequest extends FormRequest{
      */
     public function rules(){
         return [
-            'roleId'      => 'required|integer|min:1',
+            'roleId'                => 'required|integer|min:1',
+            'list_id_permission.*'  => 'required|integer|min:1',
         ];
     }
 
     public function messages(){
         return [
-            'roleId.required'       => trans('role.validate.role_id_required'),
-            'roleId.integer'        => trans('role.validate.role_id_integer'),
-            'roleId.min'            => trans('role.validate.role_id_min_1'),
+            'roleId.required'                   => trans('role.validate.role_id_required'),
+            'roleId.integer'                    => trans('role.validate.role_id_integer'),
+            'roleId.min'                        => trans('role.validate.role_id_min_1'),
+            'list_id_permission.*.required'     => trans('role.validate.permission_id_required'),
+            'list_id_permission.*.integer'      => trans('role.validate.permission_id_integer'),
+            'list_id_permission.*.min'          => trans('role.validate.permission_id_min_1'),
         ];
     }
 

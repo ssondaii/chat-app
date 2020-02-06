@@ -94,4 +94,24 @@ class RoleService{
 
         return array_diff($array_all_permission, $array_role_permission);
     }
+
+    /**
+     * update role permission relationship.
+     *
+     * @param $data
+     * @return boolean
+     */
+    public function updateRolePermission($data){
+
+        DB::beginTransaction();
+        try {
+            $this->roleRepo->updateRolePermission($data['roleId'], isset($data['list_id_permission']) ? $data['list_id_permission'] : []);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+            return false;
+        }
+        DB::commit();
+        return true;
+    }
 }

@@ -51,6 +51,7 @@
             @endif
         </div>
     </div>
+    @include('admin/modal._modalError')
 @endsection
 @section('scripts')
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

@@ -52,4 +52,22 @@ class RoleEloquentRepository extends EloquentRepository implements RoleRepositor
     {
         return $this->_model::with('permissions')->find($id);
     }
+
+    /**
+     * update role permission relationship
+     *
+     * @param $roleId
+     * @param $array_permission_id
+     * @return void
+     */
+    public function updateRolePermission($roleId, Array $array_permission_id = array())
+    {
+
+        $role = $this->_model::find($roleId);
+
+        $role->permissions()->detach();
+
+        $role->permissions()->attach($array_permission_id);
+
+    }
 }

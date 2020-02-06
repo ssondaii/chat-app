@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\RoleService;
 use App\Http\Requests\Role\CreateOrUpdateRoleRequest;
 use App\Http\Requests\Role\DeleteRoleRequest;
+use App\Http\Requests\Role\UpdateRolePermissionRequest;
 use Illuminate\Http\Response;
 use App\Models\Permission;
 
@@ -52,7 +53,7 @@ class RoleController extends Controller
      * @param DeleteRoleRequest $request
      * @return void
      */
-    public function editRolePermission(DeleteRoleRequest $request){
+    public function editRolePermission(Request $request){
         $data = $request->all();
 
         return view('admin/roles.config_role_permission', [
@@ -65,20 +66,22 @@ class RoleController extends Controller
     /**
      * update role permission.
      *
-     * @param Request $request
-     * @return boolean
+     * @param UpdateRolePermissionRequest $request
+     * @return void
      */
-    public function updateRolePermission(Request $request){
-        dd($request->all());
+    public function updateRolePermission(UpdateRolePermissionRequest $request){
+        $data = $request->all();
 
-
-
+        if($this->roleService->updateRolePermission($data)){
+            return redirect()->route('admin.roles.index')->with('status', 1);
+        }
+        return redirect()->back()->with('status', -1);
     }
 
     /**
      * delete role
      *
-     * @param Request $request
+     * @param DeleteRoleRequest $request
      * @return void
      */
     public function delete(DeleteRoleRequest $request)

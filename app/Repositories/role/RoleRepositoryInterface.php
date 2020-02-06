@@ -27,4 +27,13 @@ interface RoleRepositoryInterface{
      */
     public function getRoleByIdWithPermission($id);
 
+    /**
+     * update role permission relationship
+     *
+     * @param $roleId
+     * @param $array_permission_id
+     * @return array
+     */
+    public function updateRolePermission($roleId, Array $array_permission_id = array());
+
 }

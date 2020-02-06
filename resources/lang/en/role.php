@@ -20,6 +20,10 @@ return [
         'role_id_required'              => 'Role id must be required.',
         'role_id_exist'                 => 'This role is not exist.',
         'role_id_integer'               => 'Role id must be integer.',
+        'role_id_min_1'                 => 'The role id must be at least 1.',
+        'permission_id_required'        => 'Permission id must be required.',
+        'permission_id_integer'         => 'Permission id must be integer.',
+        'permission_id_min_1'           => 'The permission id must be at least 1.',
     ],
     'header'          => [
         'create'            => 'Create Role',
