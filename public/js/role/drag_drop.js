@@ -8,6 +8,9 @@ $( function() {
     left.sortable({
         connectWith: ".connectedSortable",
         placeholder: "class-highlight-placeholder",
+        scroll: false,
+        scrollSensitivity: 100,
+        scrollSpeed: 100,
         start : function(event, ui){
             //get current element being sorted( before drop)
             // $(ui.item)
@@ -18,12 +21,20 @@ $( function() {
                 $(ui.item).find('input[name ="list_check_permission[]"]').prop( "checked", false );
                 console.log('drop ' + $(ui.item).find('input[name ="list_id_permission[]"]').val());
             }
+        },
+        sort : function (event, ui) {
+            let parentElement   = $(ui.placeholder).parents('.connectedSortable');
+            let itemElement     = $(ui.item);
+            autoScroll(parentElement, itemElement);
         }
     }).disableSelection();
 
     right.sortable({
         connectWith: ".connectedSortable",
         placeholder: "class-highlight-placeholder",
+        scroll: false,
+        scrollSensitivity: 100,
+        scrollSpeed: 100,
         start : function(event, ui){
             //get current element being sorted( before drop)
             // $(ui.item)
@@ -34,6 +45,11 @@ $( function() {
                 $(ui.item).find('input[name ="list_check_permission[]"]').prop('checked', true);
                 console.log('drop ' + $(ui.item).find('input[name ="list_id_permission[]"]').val());
             }
+        },
+        sort : function (event, ui) {
+            let parentElement   = $(ui.placeholder).parents('.connectedSortable');
+            let itemElement     = $(ui.item);
+            autoScroll(parentElement, itemElement);
         }
     }).disableSelection();
 
@@ -71,5 +87,24 @@ $( function() {
     //show modal error
     if(modal_error.length){
         modal_error.modal("show");
+    }
+
+    //auto scroll
+    function autoScroll(parentElement, itemElement){
+
+        let parentPosition  = parentElement[0].getBoundingClientRect();
+        let itemPosition    = itemElement[0].getBoundingClientRect();
+        let scrollSpeed     = 0;
+
+        if(itemPosition.bottom >= parentPosition.bottom){
+            parentElement.animate({ scrollTop: parentElement.scrollTop() + itemPosition.height },
+                                    scrollSpeed);
+        }
+        if(itemPosition.top <= parentPosition.top){
+            parentElement.animate({ scrollTop: parentElement.scrollTop() - itemPosition.height },
+                                    scrollSpeed);
+        }
+
+        return;
     }
 } );
