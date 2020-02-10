@@ -13,7 +13,7 @@ return [
         'label1'            => 'Name',
         'label2'            => 'isAdmin',
     ],
-    'validate'           => [
+    'validate'        => [
         'roleName_required'             => 'Please provide a name.',
         'roleName_maxlength_10'         => 'The maximum length of this field is 10.',
         'roleName_unique'               => 'Role Name must be unique in roles table.',
@@ -32,5 +32,8 @@ return [
         'delete'            => 'Confirm Delete Role',
         'attach'            => 'Attached Permissions',
         'detach'            => 'Detached Permissions'
+    ],
+    'button'          => [
+        'btn_edit_permission'   => 'Edit Permission',
     ],
 ];

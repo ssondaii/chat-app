@@ -49,7 +49,8 @@ $( function() {
         sort : function (event, ui) {
             let parentElement   = $(ui.placeholder).parents('.connectedSortable');
             let itemElement     = $(ui.item);
-            autoScroll(parentElement, itemElement);
+            let itemPlaceholder = $(ui.placeholder);
+            autoScroll(parentElement, itemElement, itemPlaceholder);
         }
     }).disableSelection();
 
@@ -90,7 +91,7 @@ $( function() {
     }
 
     //auto scroll
-    function autoScroll(parentElement, itemElement){
+    function autoScroll(parentElement, itemElement, itemPlaceholder){
 
         let parentPosition  = parentElement[0].getBoundingClientRect();
         let itemPosition    = itemElement[0].getBoundingClientRect();
@@ -99,10 +100,18 @@ $( function() {
         if(itemPosition.bottom >= parentPosition.bottom){
             parentElement.animate({ scrollTop: parentElement.scrollTop() + itemPosition.height },
                                     scrollSpeed);
+            // setTimeout(function () {
+            //     parentElement.remove('.ui-sortable-placeholder');
+            //     parentElement.append(itemPlaceholder);
+            // },100);
         }
         if(itemPosition.top <= parentPosition.top){
             parentElement.animate({ scrollTop: parentElement.scrollTop() - itemPosition.height },
                                     scrollSpeed);
+            // setTimeout(function () {
+            //     parentElement.remove('.ui-sortable-placeholder');
+            //     parentElement.prepend(itemPlaceholder);
+            // },100);
         }
 
         return;
