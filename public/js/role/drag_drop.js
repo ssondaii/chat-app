@@ -3,6 +3,7 @@ $( function() {
     let btn_save    = $('#btn_save_role_permission');
     let left        = $('#sortable1');
     let right       = $('#sortable2');
+    let modal_error = $('#modalError');
 
     left.sortable({
         connectWith: ".connectedSortable",
@@ -15,7 +16,7 @@ $( function() {
             //when drag element from left and drop to right
             if(right.has($(ui.item)).length){ // check if right has element from left
                 $(ui.item).find('input[name ="list_check_permission[]"]').prop( "checked", false );
-                console.log($(ui.item).find('input[name ="list_id_permission[]"]').val());
+                console.log('drop ' + $(ui.item).find('input[name ="list_id_permission[]"]').val());
             }
         }
     }).disableSelection();
@@ -31,7 +32,7 @@ $( function() {
             //when drag element from right and drop to left
             if(left.has($(ui.item)).length){// check if left has element from right
                 $(ui.item).find('input[name ="list_check_permission[]"]').prop('checked', true);
-                console.log($(ui.item).find('input[name ="list_id_permission[]"]').val());
+                console.log('drop ' + $(ui.item).find('input[name ="list_id_permission[]"]').val());
             }
         }
     }).disableSelection();
@@ -66,4 +67,9 @@ $( function() {
     btn_save.on('click', function () {
         form_submit.submit();
     });
+
+    //show modal error
+    if(modal_error.length){
+        modal_error.modal("show");
+    }
 } );

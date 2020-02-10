@@ -53,7 +53,7 @@ class RoleController extends Controller
      * @param DeleteRoleRequest $request
      * @return void
      */
-    public function editRolePermission(Request $request){
+    public function editRolePermission(DeleteRoleRequest $request){
         $data = $request->all();
 
         return view('admin/roles.config_role_permission', [

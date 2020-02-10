@@ -24,6 +24,7 @@ return [
         'permission_id_required'        => 'Permission id must be required.',
         'permission_id_integer'         => 'Permission id must be integer.',
         'permission_id_min_1'           => 'The permission id must be at least 1.',
+        'permission_id_exist'           => 'Some permissions is not exist.',
     ],
     'header'          => [
         'create'            => 'Create Role',

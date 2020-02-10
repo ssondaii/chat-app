@@ -32,7 +32,7 @@ class UpdateRolePermissionRequest extends FormRequest{
     public function rules(){
         return [
             'roleId'                => 'required|integer|min:1',
-            'list_id_permission.*'  => 'required|integer|min:1',
+            'list_id_permission.*'  => 'integer|min:1',
         ];
     }
 
@@ -41,7 +41,6 @@ class UpdateRolePermissionRequest extends FormRequest{
             'roleId.required'                   => trans('role.validate.role_id_required'),
             'roleId.integer'                    => trans('role.validate.role_id_integer'),
             'roleId.min'                        => trans('role.validate.role_id_min_1'),
-            'list_id_permission.*.required'     => trans('role.validate.permission_id_required'),
             'list_id_permission.*.integer'      => trans('role.validate.permission_id_integer'),
             'list_id_permission.*.min'          => trans('role.validate.permission_id_min_1'),
         ];
@@ -64,6 +63,12 @@ class UpdateRolePermissionRequest extends FormRequest{
         $role = $this->roleRepo->find($this->roleId);
         if(!$role){
             $validator->errors()->add('roleId',  trans('role.validate.role_id_exist'));
+        }
+
+        if(isset($this->list_id_permission)){
+            if(!checkExistPermissionArray($this->list_id_permission)){
+                $validator->errors()->add('ArrayPermissionId',  trans('role.validate.permission_id_exist'));
+            }
         }
 
         return;

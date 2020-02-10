@@ -39,9 +39,9 @@
                                     @endforeach
                                 </td>
                                 <td class="col-1">
-                                    <form action="{{ route('admin.roles.edit_role_permission') }}" method="POST"  style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="POST">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <form action="{{ route('admin.roles.edit_role_permission') }}" method="GET"  style="display: inline-block;">
+{{--                                        <input type="hidden" name="_method" value="GET">--}}
+{{--                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
                                         <input type="hidden" name="roleId" value="{{ $role->id }}">
                                         <input type="submit" class="btn btn-outline-info btn-sm" value="{{ trans('global.button.btn_edit') }}">
                                     </form>
